@@ -59,6 +59,25 @@ All methods use `Qwen3.8-Flash-Next-FP8`, temperature=0, seed=20261101, and thin
 
 This is a 12-context pilot with one run per sample, not an official leaderboard submission or evidence of general or statistically significant superiority. Public-data pretraining contamination and overlap among underlying records have not been ruled out.
 
+### LongBench v2: full evaluation and long-context recovery
+
+The earlier evidence-window Harness was also evaluated on **LongBench v2**, from the [official paper](https://arxiv.org/abs/2412.15204), [repository](https://github.com/THUDM/LongBench), and [503-question public dataset](https://huggingface.co/datasets/zai-org/LongBench-v2). Both paths use `Qwen3.8-Flash-Next-FP8`.
+
+| Evaluation record | Direct Qwen correct / all | Harness correct / all | Harness with an answer |
+|---|---:|---:|---:|
+| Historical full 503-question run | 254/503 · 50.50% | **313/503 · 62.23%** | 502/503 |
+| Latest dedicated 82-question long-context rerun | 1/82 · 1.22% | **50/82 · 60.98%** | 81/82 |
+
+The full-run improvement is **11.73 percentage points**. In the 82-question record, Direct was rejected for context length on **79 questions**; Harness answered **49/79 correctly (62.03%)** on those same questions. This demonstrates recovery of useful task execution beyond the service's input capacity. Rejections are reported separately from wrong model answers; the comparison uses unequal inference compute and cached Direct results.
+
+These are **historical local evaluations of the evidence-window path**, with repeated development on the public set. The 82-question selection mixes character estimates and cached usage, so it is not a tokenizer-verified above-native cohort. It is a separate rerun from the full 503, and neither record is a new V3.2 structured-fact evaluation or an official leaderboard submission. See the [full protocol, domain scores, and 82-case table](docs/benchmark_longbench_v2.md), [中文报告](docs/benchmark_longbench_v2.zh-CN.md), and [all per-sample results and source hashes](benchmarks/longbench_v2_historical.json).
+
+Recompute the published result arithmetic locally, without model calls:
+
+```bash
+python scripts/verify_longbench_results.py
+```
+
 ## Related work comparison
 
 CRU-Harness combines external context management with task-specific evidence computation. The comparison below describes architectural emphasis; the measured three-way table above uses our pinned, same-model adaptations, rather than scores copied from papers with different models or budgets.
@@ -228,6 +247,8 @@ The independent Harness offline demo requires only the standard library; develop
 - [V3.2 technical implementation](docs/v32_implementation.md)
 - [Latest OOLONG evaluation and per-sample results](docs/benchmark_v32.md)
 - [Machine-readable results JSON](benchmarks/oolong_v32_20261101.json)
+- [LongBench v2 results and evaluation protocol](docs/benchmark_longbench_v2.md)
+- [LongBench v2 per-sample results JSON](benchmarks/longbench_v2_historical.json)
 - [Full project proposal](docs/CRU-Harness_Project_Proposal_V3.2.docx)
 - [Execution API and budget rules](docs/harness_api.md)
 - [DocumentIR contract](docs/document_ir_contract.md)

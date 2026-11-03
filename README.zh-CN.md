@@ -59,6 +59,25 @@
 
 本轮是 12 个上下文、每题一次推理的先导实验，不是官方排行榜提交。公开数据的预训练污染和底层记录重叠未被排除，当前证据不支持宣称普遍或显著领先。
 
+### LongBench v2：全量成绩与超长上下文恢复
+
+早期证据窗口版 Harness 还在 **LongBench v2** 上完成了评测，来源为[官方论文](https://arxiv.org/abs/2412.15204)、[官方仓库](https://github.com/THUDM/LongBench)和 [503 题公开数据集](https://huggingface.co/datasets/zai-org/LongBench-v2)。两条路径均使用 `Qwen3.8-Flash-Next-FP8`。
+
+| 实验记录 | Direct Qwen 正确 / 全部 | Harness 正确 / 全部 | Harness 有答案 |
+|---|---:|---:|---:|
+| 历史 503 题全量运行 | 254/503 · 50.50% | **313/503 · 62.23%** | 502/503 |
+| 最后统一重跑的 82 题超长子集 | 1/82 · 1.22% | **50/82 · 60.98%** | 81/82 |
+
+全量结果提升 **11.73 个百分点**。在 82 题记录中，Direct 有 **79 题因上下文长度被服务拒绝**，Harness 在这些相同题目上答对 **49/79（62.03%）**，体现了超出服务输入容量后恢复有效解题路径的价值。容量拒绝与模型答错分别记录；两条路径的推理计算量不同，Direct 使用已有缓存。
+
+这些是**历史证据窗口路径的本地评测**，公开样本已经过多轮开发使用。82 题筛选混合字符估算和缓存 usage，不代表全部经过 tokenizer 实测超出原生上限；它与 503 全量属于不同运行阶段。两份成绩均不是当前 V3.2 结构化事实版本的新重跑，也不是官方排行榜提交。详见[完整中文报告、领域成绩和 82 题逐题表](docs/benchmark_longbench_v2.zh-CN.md)、[English report](docs/benchmark_longbench_v2.md)及[全部逐题结果与来源哈希](benchmarks/longbench_v2_historical.json)。
+
+无需模型调用，即可在本地复算发布结果：
+
+```bash
+python scripts/verify_longbench_results.py
+```
+
 ## 相似工作对比
 
 CRU-Harness 把外部上下文管理与面向任务的证据计算结合起来。下表比较架构取向；上方实测三路表使用固定版本、同模型的本地适配配置，不混排论文中异模型、异预算的分数。
@@ -228,6 +247,8 @@ python -m pytest -q \
 - [V3.2 技术实现](docs/v32_implementation.md)
 - [最新 OOLONG 评测与逐题结果](docs/benchmark_v32.md)
 - [机器可读结果 JSON](benchmarks/oolong_v32_20261101.json)
+- [LongBench v2 成绩与评测协议](docs/benchmark_longbench_v2.zh-CN.md)
+- [LongBench v2 逐题结果 JSON](benchmarks/longbench_v2_historical.json)
 - [完整项目书](docs/CRU-Harness_Project_Proposal_V3.2.docx)
 - [执行 API 与预算规则](docs/harness_api.md)
 - [DocumentIR 合同](docs/document_ir_contract.md)

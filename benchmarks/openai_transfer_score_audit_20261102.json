@@ -1,0 +1,798 @@
+{
+  "audit_version": 1,
+  "status": "pass",
+  "audit_scope": "Independent read-only CPU verification after all36 terminal and unified scoring",
+  "freeze_sha256": "7be98f287df0e854f6753a5811071009518e1c250b8d56cf43c33464f2e112c9",
+  "source_files_checked": 29,
+  "live_and_snapshot_hashes_match": true,
+  "original_v32_core_files_checked": 6,
+  "model_sample_pairs": 36,
+  "distinct_source_contexts": 12,
+  "all_36_terminal_before_scoring_metadata": true,
+  "latest_prediction_mtime_utc": "2026-11-03T04:20:50.883283+00:00",
+  "first_scoring_access_utc": "2026-11-03T04:21:24.785865+00:00",
+  "all_prediction_mtimes_before_access": true,
+  "official_score_and_local_parser_recomputed": 36,
+  "prediction_journal_and_audit_correspondence_checked": 36,
+  "physical_generations": 319,
+  "charged_or_reserved_tokens": 843748,
+  "cost_reservations": 319,
+  "all_usage_known": true,
+  "monetary_cap_usd": "15",
+  "conservative_generation_cost_upper_usd": "4.6993970",
+  "monetary_pre_admission_and_settlement_formulas_checked": true,
+  "actual_model_counts": {
+    "gpt-6-luna": 82,
+    "gpt-6-sol": 119,
+    "gpt-6.1-terra": 118
+  },
+  "actual_service_tier_counts": {
+    "default": 319
+  },
+  "response_status_counts": {
+    "completed": 316,
+    "incomplete": 3
+  },
+  "incomplete_reason_counts": {
+    "max_output_tokens": 3
+  },
+  "recorded_task_error_type_counts": {
+    "OpenAIResponseNotCompletedError": 3
+  },
+  "summary": {
+    "gpt-6-sol": {
+      "n": 12,
+      "full_credit": 9,
+      "mean_official_score": 0.75,
+      "parsed_exact_match": 5,
+      "calls": 119,
+      "charged_tokens": 305655,
+      "input_tokens_known": 265864,
+      "output_tokens_known": 39791,
+      "cost_upper_usd": "3.05655",
+      "above_native_direct_request_n": 6,
+      "above_native_direct_request_full_credit": 4
+    },
+    "gpt-6-luna": {
+      "n": 12,
+      "full_credit": 6,
+      "mean_official_score": 0.5,
+      "parsed_exact_match": 4,
+      "calls": 82,
+      "charged_tokens": 232804,
+      "input_tokens_known": 194168,
+      "output_tokens_known": 38636,
+      "cost_upper_usd": "0.1164020",
+      "above_native_direct_request_n": 6,
+      "above_native_direct_request_full_credit": 2
+    },
+    "gpt-6.1-terra": {
+      "n": 12,
+      "full_credit": 10,
+      "mean_official_score": 0.8333333333333334,
+      "parsed_exact_match": 5,
+      "calls": 118,
+      "charged_tokens": 305289,
+      "input_tokens_known": 265532,
+      "output_tokens_known": 39757,
+      "cost_upper_usd": "1.526445",
+      "above_native_direct_request_n": 6,
+      "above_native_direct_request_full_credit": 5
+    }
+  },
+  "per_sample_scores_and_costs": [
+    {
+      "sample_id": "oolong-synth-test-220020041",
+      "model": "gpt-6-luna",
+      "official_score": 1.0,
+      "full_credit": true,
+      "parsed_exact_match": true,
+      "calls": 3,
+      "charged_or_reserved_tokens": 6579,
+      "unknown_usage_requests": 0,
+      "estimated_cost_upper_usd": "0.0032895",
+      "above_native_direct_request": false,
+      "input_tokens_known": 6383,
+      "output_tokens_known": 196
+    },
+    {
+      "sample_id": "oolong-synth-test-220020070",
+      "model": "gpt-6-luna",
+      "official_score": 1.0,
+      "full_credit": true,
+      "parsed_exact_match": true,
+      "calls": 1,
+      "charged_or_reserved_tokens": 1478,
+      "unknown_usage_requests": 0,
+      "estimated_cost_upper_usd": "0.000739",
+      "above_native_direct_request": false,
+      "input_tokens_known": 1373,
+      "output_tokens_known": 105
+    },
+    {
+      "sample_id": "oolong-synth-test-420040065",
+      "model": "gpt-6-luna",
+      "official_score": 0.0,
+      "full_credit": false,
+      "parsed_exact_match": false,
+      "calls": 9,
+      "charged_or_reserved_tokens": 32154,
+      "unknown_usage_requests": 0,
+      "estimated_cost_upper_usd": "0.0160770",
+      "above_native_direct_request": false,
+      "input_tokens_known": 26595,
+      "output_tokens_known": 5559
+    },
+    {
+      "sample_id": "oolong-synth-test-520050245",
+      "model": "gpt-6-luna",
+      "official_score": 0.0,
+      "full_credit": false,
+      "parsed_exact_match": false,
+      "calls": 2,
+      "charged_or_reserved_tokens": 6576,
+      "unknown_usage_requests": 0,
+      "estimated_cost_upper_usd": "0.003288",
+      "above_native_direct_request": false,
+      "input_tokens_known": 4380,
+      "output_tokens_known": 2196
+    },
+    {
+      "sample_id": "oolong-synth-test-621060211",
+      "model": "gpt-6-luna",
+      "official_score": 0.0,
+      "full_credit": false,
+      "parsed_exact_match": false,
+      "calls": 23,
+      "charged_or_reserved_tokens": 65348,
+      "unknown_usage_requests": 0,
+      "estimated_cost_upper_usd": "0.0326740",
+      "above_native_direct_request": true,
+      "input_tokens_known": 54793,
+      "output_tokens_known": 10555
+    },
+    {
+      "sample_id": "oolong-synth-test-621060242",
+      "model": "gpt-6-luna",
+      "official_score": 0.0,
+      "full_credit": false,
+      "parsed_exact_match": false,
+      "calls": 2,
+      "charged_or_reserved_tokens": 2546,
+      "unknown_usage_requests": 0,
+      "estimated_cost_upper_usd": "0.0012730",
+      "above_native_direct_request": true,
+      "input_tokens_known": 2337,
+      "output_tokens_known": 209
+    },
+    {
+      "sample_id": "oolong-synth-test-721070053",
+      "model": "gpt-6-luna",
+      "official_score": 1.0,
+      "full_credit": true,
+      "parsed_exact_match": true,
+      "calls": 1,
+      "charged_or_reserved_tokens": 1466,
+      "unknown_usage_requests": 0,
+      "estimated_cost_upper_usd": "0.000733",
+      "above_native_direct_request": true,
+      "input_tokens_known": 1361,
+      "output_tokens_known": 105
+    },
+    {
+      "sample_id": "oolong-synth-test-721070068",
+      "model": "gpt-6-luna",
+      "official_score": 1.0,
+      "full_credit": true,
+      "parsed_exact_match": false,
+      "calls": 2,
+      "charged_or_reserved_tokens": 3102,
+      "unknown_usage_requests": 0,
+      "estimated_cost_upper_usd": "0.001551",
+      "above_native_direct_request": true,
+      "input_tokens_known": 2862,
+      "output_tokens_known": 240
+    },
+    {
+      "sample_id": "oolong-synth-test-820080226",
+      "model": "gpt-6-luna",
+      "official_score": 1.0,
+      "full_credit": true,
+      "parsed_exact_match": true,
+      "calls": 3,
+      "charged_or_reserved_tokens": 4176,
+      "unknown_usage_requests": 0,
+      "estimated_cost_upper_usd": "0.0020880",
+      "above_native_direct_request": false,
+      "input_tokens_known": 3867,
+      "output_tokens_known": 309
+    },
+    {
+      "sample_id": "oolong-synth-test-821080221",
+      "model": "gpt-6-luna",
+      "official_score": 0.0,
+      "full_credit": false,
+      "parsed_exact_match": false,
+      "calls": 11,
+      "charged_or_reserved_tokens": 40255,
+      "unknown_usage_requests": 0,
+      "estimated_cost_upper_usd": "0.0201275",
+      "above_native_direct_request": true,
+      "input_tokens_known": 29710,
+      "output_tokens_known": 10545
+    },
+    {
+      "sample_id": "oolong-synth-test-920090057",
+      "model": "gpt-6-luna",
+      "official_score": 1.0,
+      "full_credit": true,
+      "parsed_exact_match": false,
+      "calls": 22,
+      "charged_or_reserved_tokens": 65148,
+      "unknown_usage_requests": 0,
+      "estimated_cost_upper_usd": "0.0325740",
+      "above_native_direct_request": false,
+      "input_tokens_known": 56840,
+      "output_tokens_known": 8308
+    },
+    {
+      "sample_id": "oolong-synth-test-921090209",
+      "model": "gpt-6-luna",
+      "official_score": 0.0,
+      "full_credit": false,
+      "parsed_exact_match": false,
+      "calls": 3,
+      "charged_or_reserved_tokens": 3976,
+      "unknown_usage_requests": 0,
+      "estimated_cost_upper_usd": "0.001988",
+      "above_native_direct_request": true,
+      "input_tokens_known": 3667,
+      "output_tokens_known": 309
+    },
+    {
+      "sample_id": "oolong-synth-test-220020041",
+      "model": "gpt-6-sol",
+      "official_score": 1.0,
+      "full_credit": true,
+      "parsed_exact_match": true,
+      "calls": 2,
+      "charged_or_reserved_tokens": 5915,
+      "unknown_usage_requests": 0,
+      "estimated_cost_upper_usd": "0.05915",
+      "above_native_direct_request": false,
+      "input_tokens_known": 5740,
+      "output_tokens_known": 175
+    },
+    {
+      "sample_id": "oolong-synth-test-220020070",
+      "model": "gpt-6-sol",
+      "official_score": 1.0,
+      "full_credit": true,
+      "parsed_exact_match": true,
+      "calls": 1,
+      "charged_or_reserved_tokens": 1478,
+      "unknown_usage_requests": 0,
+      "estimated_cost_upper_usd": "0.01478",
+      "above_native_direct_request": false,
+      "input_tokens_known": 1373,
+      "output_tokens_known": 105
+    },
+    {
+      "sample_id": "oolong-synth-test-420040065",
+      "model": "gpt-6-sol",
+      "official_score": 0.0,
+      "full_credit": false,
+      "parsed_exact_match": false,
+      "calls": 27,
+      "charged_or_reserved_tokens": 65089,
+      "unknown_usage_requests": 0,
+      "estimated_cost_upper_usd": "0.65089",
+      "above_native_direct_request": false,
+      "input_tokens_known": 55315,
+      "output_tokens_known": 9774
+    },
+    {
+      "sample_id": "oolong-synth-test-520050245",
+      "model": "gpt-6-sol",
+      "official_score": 1.0,
+      "full_credit": true,
+      "parsed_exact_match": false,
+      "calls": 20,
+      "charged_or_reserved_tokens": 65218,
+      "unknown_usage_requests": 0,
+      "estimated_cost_upper_usd": "0.65218",
+      "above_native_direct_request": false,
+      "input_tokens_known": 57994,
+      "output_tokens_known": 7224
+    },
+    {
+      "sample_id": "oolong-synth-test-621060211",
+      "model": "gpt-6-sol",
+      "official_score": 0.0,
+      "full_credit": false,
+      "parsed_exact_match": false,
+      "calls": 26,
+      "charged_or_reserved_tokens": 65327,
+      "unknown_usage_requests": 0,
+      "estimated_cost_upper_usd": "0.65327",
+      "above_native_direct_request": true,
+      "input_tokens_known": 55792,
+      "output_tokens_known": 9535
+    },
+    {
+      "sample_id": "oolong-synth-test-621060242",
+      "model": "gpt-6-sol",
+      "official_score": 1.0,
+      "full_credit": true,
+      "parsed_exact_match": false,
+      "calls": 2,
+      "charged_or_reserved_tokens": 2546,
+      "unknown_usage_requests": 0,
+      "estimated_cost_upper_usd": "0.02546",
+      "above_native_direct_request": true,
+      "input_tokens_known": 2337,
+      "output_tokens_known": 209
+    },
+    {
+      "sample_id": "oolong-synth-test-721070053",
+      "model": "gpt-6-sol",
+      "official_score": 1.0,
+      "full_credit": true,
+      "parsed_exact_match": true,
+      "calls": 1,
+      "charged_or_reserved_tokens": 1466,
+      "unknown_usage_requests": 0,
+      "estimated_cost_upper_usd": "0.01466",
+      "above_native_direct_request": true,
+      "input_tokens_known": 1361,
+      "output_tokens_known": 105
+    },
+    {
+      "sample_id": "oolong-synth-test-721070068",
+      "model": "gpt-6-sol",
+      "official_score": 1.0,
+      "full_credit": true,
+      "parsed_exact_match": false,
+      "calls": 2,
+      "charged_or_reserved_tokens": 3102,
+      "unknown_usage_requests": 0,
+      "estimated_cost_upper_usd": "0.03102",
+      "above_native_direct_request": true,
+      "input_tokens_known": 2862,
+      "output_tokens_known": 240
+    },
+    {
+      "sample_id": "oolong-synth-test-820080226",
+      "model": "gpt-6-sol",
+      "official_score": 1.0,
+      "full_credit": true,
+      "parsed_exact_match": true,
+      "calls": 2,
+      "charged_or_reserved_tokens": 2541,
+      "unknown_usage_requests": 0,
+      "estimated_cost_upper_usd": "0.02541",
+      "above_native_direct_request": false,
+      "input_tokens_known": 2336,
+      "output_tokens_known": 205
+    },
+    {
+      "sample_id": "oolong-synth-test-821080221",
+      "model": "gpt-6-sol",
+      "official_score": 1.0724736787356913e-62,
+      "full_credit": false,
+      "parsed_exact_match": false,
+      "calls": 10,
+      "charged_or_reserved_tokens": 25489,
+      "unknown_usage_requests": 0,
+      "estimated_cost_upper_usd": "0.25489",
+      "above_native_direct_request": true,
+      "input_tokens_known": 22116,
+      "output_tokens_known": 3373
+    },
+    {
+      "sample_id": "oolong-synth-test-920090057",
+      "model": "gpt-6-sol",
+      "official_score": 1.0,
+      "full_credit": true,
+      "parsed_exact_match": false,
+      "calls": 24,
+      "charged_or_reserved_tokens": 65046,
+      "unknown_usage_requests": 0,
+      "estimated_cost_upper_usd": "0.65046",
+      "above_native_direct_request": false,
+      "input_tokens_known": 56405,
+      "output_tokens_known": 8641
+    },
+    {
+      "sample_id": "oolong-synth-test-921090209",
+      "model": "gpt-6-sol",
+      "official_score": 1.0,
+      "full_credit": true,
+      "parsed_exact_match": true,
+      "calls": 2,
+      "charged_or_reserved_tokens": 2438,
+      "unknown_usage_requests": 0,
+      "estimated_cost_upper_usd": "0.02438",
+      "above_native_direct_request": true,
+      "input_tokens_known": 2233,
+      "output_tokens_known": 205
+    },
+    {
+      "sample_id": "oolong-synth-test-220020041",
+      "model": "gpt-6.1-terra",
+      "official_score": 1.0,
+      "full_credit": true,
+      "parsed_exact_match": true,
+      "calls": 2,
+      "charged_or_reserved_tokens": 5915,
+      "unknown_usage_requests": 0,
+      "estimated_cost_upper_usd": "0.029575",
+      "above_native_direct_request": false,
+      "input_tokens_known": 5740,
+      "output_tokens_known": 175
+    },
+    {
+      "sample_id": "oolong-synth-test-220020070",
+      "model": "gpt-6.1-terra",
+      "official_score": 1.0,
+      "full_credit": true,
+      "parsed_exact_match": true,
+      "calls": 1,
+      "charged_or_reserved_tokens": 1473,
+      "unknown_usage_requests": 0,
+      "estimated_cost_upper_usd": "0.007365",
+      "above_native_direct_request": false,
+      "input_tokens_known": 1373,
+      "output_tokens_known": 100
+    },
+    {
+      "sample_id": "oolong-synth-test-420040065",
+      "model": "gpt-6.1-terra",
+      "official_score": 0.0,
+      "full_credit": false,
+      "parsed_exact_match": false,
+      "calls": 27,
+      "charged_or_reserved_tokens": 65084,
+      "unknown_usage_requests": 0,
+      "estimated_cost_upper_usd": "0.325420",
+      "above_native_direct_request": false,
+      "input_tokens_known": 55315,
+      "output_tokens_known": 9769
+    },
+    {
+      "sample_id": "oolong-synth-test-520050245",
+      "model": "gpt-6.1-terra",
+      "official_score": 1.0,
+      "full_credit": true,
+      "parsed_exact_match": false,
+      "calls": 20,
+      "charged_or_reserved_tokens": 65294,
+      "unknown_usage_requests": 0,
+      "estimated_cost_upper_usd": "0.326470",
+      "above_native_direct_request": false,
+      "input_tokens_known": 58058,
+      "output_tokens_known": 7236
+    },
+    {
+      "sample_id": "oolong-synth-test-621060211",
+      "model": "gpt-6.1-terra",
+      "official_score": 1.0,
+      "full_credit": true,
+      "parsed_exact_match": false,
+      "calls": 25,
+      "charged_or_reserved_tokens": 64778,
+      "unknown_usage_requests": 0,
+      "estimated_cost_upper_usd": "0.323890",
+      "above_native_direct_request": true,
+      "input_tokens_known": 55263,
+      "output_tokens_known": 9515
+    },
+    {
+      "sample_id": "oolong-synth-test-621060242",
+      "model": "gpt-6.1-terra",
+      "official_score": 1.0,
+      "full_credit": true,
+      "parsed_exact_match": false,
+      "calls": 2,
+      "charged_or_reserved_tokens": 2546,
+      "unknown_usage_requests": 0,
+      "estimated_cost_upper_usd": "0.012730",
+      "above_native_direct_request": true,
+      "input_tokens_known": 2337,
+      "output_tokens_known": 209
+    },
+    {
+      "sample_id": "oolong-synth-test-721070053",
+      "model": "gpt-6.1-terra",
+      "official_score": 1.0,
+      "full_credit": true,
+      "parsed_exact_match": true,
+      "calls": 1,
+      "charged_or_reserved_tokens": 1461,
+      "unknown_usage_requests": 0,
+      "estimated_cost_upper_usd": "0.007305",
+      "above_native_direct_request": true,
+      "input_tokens_known": 1361,
+      "output_tokens_known": 100
+    },
+    {
+      "sample_id": "oolong-synth-test-721070068",
+      "model": "gpt-6.1-terra",
+      "official_score": 1.0,
+      "full_credit": true,
+      "parsed_exact_match": false,
+      "calls": 2,
+      "charged_or_reserved_tokens": 3102,
+      "unknown_usage_requests": 0,
+      "estimated_cost_upper_usd": "0.01551",
+      "above_native_direct_request": true,
+      "input_tokens_known": 2862,
+      "output_tokens_known": 240
+    },
+    {
+      "sample_id": "oolong-synth-test-820080226",
+      "model": "gpt-6.1-terra",
+      "official_score": 1.0,
+      "full_credit": true,
+      "parsed_exact_match": true,
+      "calls": 2,
+      "charged_or_reserved_tokens": 2541,
+      "unknown_usage_requests": 0,
+      "estimated_cost_upper_usd": "0.012705",
+      "above_native_direct_request": false,
+      "input_tokens_known": 2336,
+      "output_tokens_known": 205
+    },
+    {
+      "sample_id": "oolong-synth-test-821080221",
+      "model": "gpt-6.1-terra",
+      "official_score": 1.8788526547522096e-49,
+      "full_credit": false,
+      "parsed_exact_match": false,
+      "calls": 10,
+      "charged_or_reserved_tokens": 25423,
+      "unknown_usage_requests": 0,
+      "estimated_cost_upper_usd": "0.127115",
+      "above_native_direct_request": true,
+      "input_tokens_known": 22056,
+      "output_tokens_known": 3367
+    },
+    {
+      "sample_id": "oolong-synth-test-920090057",
+      "model": "gpt-6.1-terra",
+      "official_score": 1.0,
+      "full_credit": true,
+      "parsed_exact_match": false,
+      "calls": 24,
+      "charged_or_reserved_tokens": 65239,
+      "unknown_usage_requests": 0,
+      "estimated_cost_upper_usd": "0.326195",
+      "above_native_direct_request": false,
+      "input_tokens_known": 56598,
+      "output_tokens_known": 8641
+    },
+    {
+      "sample_id": "oolong-synth-test-921090209",
+      "model": "gpt-6.1-terra",
+      "official_score": 1.0,
+      "full_credit": true,
+      "parsed_exact_match": true,
+      "calls": 2,
+      "charged_or_reserved_tokens": 2433,
+      "unknown_usage_requests": 0,
+      "estimated_cost_upper_usd": "0.012165",
+      "above_native_direct_request": true,
+      "input_tokens_known": 2233,
+      "output_tokens_known": 200
+    }
+  ],
+  "public_json_sha256": "70a5a36fbed58395ff037d4c9d35a233a788f3b152cd3460106f0817f9e7d85f",
+  "public_results_matrix_and_aggregates_match": true,
+  "public_documents": {
+    "docs/openai_transfer_20261102.md": {
+      "sha256": "3bac7fa613ab64cbfc8e0729593157894003bd1bc13c8b13af340f4145d7d368",
+      "exact_model_sources_present": true
+    },
+    "docs/openai_transfer_20261102.zh-CN.md": {
+      "sha256": "adc34b1567eb0c4df147849de221f35e4b04056420cd3c3df9f46f90591489c1",
+      "exact_model_sources_present": true
+    }
+  },
+  "source_checks": [
+    {
+      "path": "long_context_agent/__init__.py",
+      "live_match": true,
+      "snapshot_match": true
+    },
+    {
+      "path": "long_context_agent/action_planner.py",
+      "live_match": true,
+      "snapshot_match": true
+    },
+    {
+      "path": "long_context_agent/adaptive_evidence.py",
+      "live_match": true,
+      "snapshot_match": true
+    },
+    {
+      "path": "long_context_agent/adaptive_evidence_v3.py",
+      "live_match": true,
+      "snapshot_match": true
+    },
+    {
+      "path": "long_context_agent/cli.py",
+      "live_match": true,
+      "snapshot_match": true
+    },
+    {
+      "path": "long_context_agent/context_builder.py",
+      "live_match": true,
+      "snapshot_match": true
+    },
+    {
+      "path": "long_context_agent/evidence_retriever.py",
+      "live_match": true,
+      "snapshot_match": true
+    },
+    {
+      "path": "long_context_agent/experiment_budget.py",
+      "live_match": true,
+      "snapshot_match": true
+    },
+    {
+      "path": "long_context_agent/fact_ledger.py",
+      "live_match": true,
+      "snapshot_match": true
+    },
+    {
+      "path": "long_context_agent/harness.py",
+      "live_match": true,
+      "snapshot_match": true
+    },
+    {
+      "path": "long_context_agent/legacy_v31/__init__.py",
+      "live_match": true,
+      "snapshot_match": true
+    },
+    {
+      "path": "long_context_agent/legacy_v31/adaptive_evidence.py",
+      "live_match": true,
+      "snapshot_match": true
+    },
+    {
+      "path": "long_context_agent/legacy_v31/adaptive_evidence_v3.py",
+      "live_match": true,
+      "snapshot_match": true
+    },
+    {
+      "path": "long_context_agent/legacy_v31/fact_ledger.py",
+      "live_match": true,
+      "snapshot_match": true
+    },
+    {
+      "path": "long_context_agent/legacy_v31/record_protocol.py",
+      "live_match": true,
+      "snapshot_match": true
+    },
+    {
+      "path": "long_context_agent/openai_responses_transport.py",
+      "live_match": true,
+      "snapshot_match": true
+    },
+    {
+      "path": "long_context_agent/reader_agent.py",
+      "live_match": true,
+      "snapshot_match": true
+    },
+    {
+      "path": "long_context_agent/reading_state.py",
+      "live_match": true,
+      "snapshot_match": true
+    },
+    {
+      "path": "long_context_agent/reconciler.py",
+      "live_match": true,
+      "snapshot_match": true
+    },
+    {
+      "path": "long_context_agent/record_protocol.py",
+      "live_match": true,
+      "snapshot_match": true
+    },
+    {
+      "path": "long_context_agent/section_reader.py",
+      "live_match": true,
+      "snapshot_match": true
+    },
+    {
+      "path": "long_context_agent/semantic_coverage.py",
+      "live_match": true,
+      "snapshot_match": true
+    },
+    {
+      "path": "long_context_agent/termination.py",
+      "live_match": true,
+      "snapshot_match": true
+    },
+    {
+      "path": "long_context_agent/token_budget.py",
+      "live_match": true,
+      "snapshot_match": true
+    },
+    {
+      "path": "long_context_agent/virtual_context.py",
+      "live_match": true,
+      "snapshot_match": true
+    },
+    {
+      "path": "scripts/audit_context_holdout_execution_v3.py",
+      "live_match": true,
+      "snapshot_match": true
+    },
+    {
+      "path": "scripts/benchmark_context_holdout.py",
+      "live_match": true,
+      "snapshot_match": true
+    },
+    {
+      "path": "scripts/benchmark_openai_transfer.py",
+      "live_match": true,
+      "snapshot_match": true
+    },
+    {
+      "path": "scripts/prepare_context_holdout.py",
+      "live_match": true,
+      "snapshot_match": true
+    }
+  ],
+  "prediction_file_sha256": {
+    "oolong-synth-test-520050245__gpt-6-luna.json": "f89ad24722c2723a77d6c7b703a918bd80ca8393bf63b9df35a4fefcdd3d4ecc",
+    "oolong-synth-test-621060211__gpt-6.1-terra.json": "7f4731201c363c0c7511650ef8f6c675aa1bdb272c3d178e210e241ba1b5b5a0",
+    "oolong-synth-test-621060242__gpt-6.1-terra.json": "ca00ace31ad15d9a2cb125dcd0c25965e5ccae84882e94c657967b3a955ca2d4",
+    "oolong-synth-test-621060211__gpt-6-luna.json": "2b2ec144359a08841aa846b78bbae5527f9a11fc6193776eb274d51911c5b588",
+    "oolong-synth-test-821080221__gpt-6.1-terra.json": "cf2efd048228fb9ccafc2022ae4daceed5bc81c946ce59353f6c4d46de9ac3ef",
+    "oolong-synth-test-220020041__gpt-6-sol.json": "6038cf6cce8dff1db8ddd1ef9ea16aa1192b9ba642330a0255d621f4b422e3ae",
+    "oolong-synth-test-820080226__gpt-6-sol.json": "7660fbd93740d9511ae28ebfa74f95dd2b288ceb3a00734b76142d8ddc195b2f",
+    "oolong-synth-test-721070068__gpt-6-luna.json": "65c88ae98e3000c2986461d103ae44a3308ae3751642d6cb676c8163d9b77c7e",
+    "oolong-synth-test-420040065__gpt-6.1-terra.json": "7f4722db9fe1482cfddc93ffcd8166e8ff2bae925f9546dfc512892e7ac99c6f",
+    "oolong-synth-test-721070068__gpt-6.1-terra.json": "ef54da3b72d178ea6aed3f4f0df741bef3be0178bebf9f1bc9f3fdeda9300d14",
+    "oolong-synth-test-921090209__gpt-6.1-terra.json": "c859ac2bbcfdbbd1397fdfbddf5b36c4a83048d38da6a4181fd9926aed3f40af",
+    "oolong-synth-test-220020070__gpt-6.1-terra.json": "fcfef663bc79f110fb1b0881887f14f2912a7b27473cfaf834fa95ce276c0edd",
+    "oolong-synth-test-921090209__gpt-6-luna.json": "a65b69ae4d9a29ca4a703ecf8f5c8c3d1d587e03a06a1de1a627624b61bc439a",
+    "oolong-synth-test-920090057__gpt-6-sol.json": "1dd974d0805ce579837305395a8e2fbf6a71b956368f28a92cf1318a904c8891",
+    "oolong-synth-test-621060242__gpt-6-sol.json": "fb370acf1aa9ebff5bc61dc9324a1eb9dda8c0c810fe5a1f30fca5dd2bb66289",
+    "oolong-synth-test-520050245__gpt-6.1-terra.json": "027201bc9c16810f7ddc43e95fb70d4800fe22cbd05a86b19812c074148f2973",
+    "oolong-synth-test-721070053__gpt-6-luna.json": "fa3dd811c2ab87cf756d5b14a3166b7c17a78d770230239b94ccbf3febd4c9e1",
+    "oolong-synth-test-820080226__gpt-6-luna.json": "a2ecae1d2261b9ec188ae764bb4897c213161d4307c366ecd035014411a32eea",
+    "oolong-synth-test-621060211__gpt-6-sol.json": "491d7a0d97e078a80848690a25e320e3b4b06a17fe3bfc82e0a69de3018f1aa0",
+    "oolong-synth-test-821080221__gpt-6-sol.json": "c17e9e1b24e0e07e99a827d6789bd68989c356f6e971d3c2ddb6874665061ac0",
+    "oolong-synth-test-920090057__gpt-6.1-terra.json": "1f8fac3ff962316f2433a37f3b321a1d0780c1333e1742a18c4df97d54d062f2",
+    "oolong-synth-test-721070053__gpt-6-sol.json": "ed8f02fb06e174b870f164ccc58eb7a71ccc9c72bcc5b1f5c22f9951974a36ac",
+    "oolong-synth-test-721070053__gpt-6.1-terra.json": "d1c16e298293df7f259e7d334801e9072b7952dee0ea25e56fbc962879927bd5",
+    "oolong-synth-test-921090209__gpt-6-sol.json": "e2aabf4c6056b359a5b8cd077325eac38b399cdb84e375b10098fa2e45fc99f5",
+    "oolong-synth-test-920090057__gpt-6-luna.json": "12500583237ecc0987538a37192da3e6adb5cf1048b52960240f07a0e439458c",
+    "oolong-synth-test-220020070__gpt-6-sol.json": "af7779e77f997f9d11246b975d4d6fe0d427455f7d7e93e557e2648128907162",
+    "oolong-synth-test-520050245__gpt-6-sol.json": "f7f4aa020f58c9c9f874582370ea768c0b63e7b59bcd63b54119af5ce90d3e1c",
+    "oolong-synth-test-420040065__gpt-6-luna.json": "8a3ca194a71e884209c5e93694c571673f9cc456f793849b2ca13b3dc708406d",
+    "oolong-synth-test-220020041__gpt-6.1-terra.json": "462f5651189bc721efe5b20e0a241ac8fb047469e48506a92c179686e02abe6a",
+    "oolong-synth-test-220020070__gpt-6-luna.json": "020b34c7dc3f4144fee477b33b19bbf427fc03fb322dd7a8c505f34e5e97735e",
+    "oolong-synth-test-721070068__gpt-6-sol.json": "b206b754f35bcdc86fe8a1652fb8853e7b3adcd2358db7694ec09c824208ac59",
+    "oolong-synth-test-621060242__gpt-6-luna.json": "0ba1723672efab0ddf8c24a3d206f96e8de600063180f8ad81dedb61e581330d",
+    "oolong-synth-test-820080226__gpt-6.1-terra.json": "a0430ad73283902d87ddd26380c9de11a6c45560dac21d7438398a189a8b4458",
+    "oolong-synth-test-821080221__gpt-6-luna.json": "4edb802fad48f968c814c67b44d00f7fc8f8c2ff9ccefc33e78d4e8caeec271c",
+    "oolong-synth-test-420040065__gpt-6-sol.json": "628b2184b82be624dbfbd25a7b4ea7bc0f8b514324643e60a5109d40aeaa71e2",
+    "oolong-synth-test-220020041__gpt-6-luna.json": "f864ac2be13fe084f7ff37ec151147570763f2009263c6d72c31e0b38376ec98"
+  },
+  "raw_result_fact_bodies_processed": false,
+  "raw_answers_or_keys_written_to_reports": false,
+  "api_calls_made_by_this_audit": 0,
+  "frozen_inputs_modified_by_this_audit": false,
+  "limitations": [
+    "Guard/profile metadata and frozen control order are not a complete OS access trace.",
+    "Pre-reservation order is supported by frozen call ordering and reservation/journal correspondence, not independent packet timestamps.",
+    "Provider full-input counts are checked arithmetically, not re-requested from the API.",
+    "Mechanism/fact correctness is separately audited by the architecture reviewer; this checker discards raw result/fact bodies.",
+    "Conservative monetary estimates are not an invoice; reused cohort and no-direct-generation limitations remain."
+  ],
+  "violations": []
+}

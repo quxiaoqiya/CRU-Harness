@@ -9,6 +9,13 @@ CRU-Harness does not claim authorship of these benchmarks or their source datase
 - Project-authored source code, documentation, synthetic examples and tests.
 - Derived evaluation results, sample identifiers, version references and hashes
   in `benchmarks/oolong_v32_20261101.json`.
+- Derived OpenAI transfer scores, usage, source-envelope counts and audit
+  metadata in `benchmarks/openai_transfer_20261102.json` and
+  `benchmarks/openai_transfer_integrity_20261102.json`, with independent score
+  and cost checks in `benchmarks/openai_transfer_score_audit_20261102.json`.
+  These reuse the same
+  external OOLONG-synth sources; raw questions, answers and fact ledgers are
+  not distributed in these artifacts.
 - Derived historical LongBench v2 results, sample identifiers, answer letters,
   source-context hashes, and local artifact hashes in
   `benchmarks/longbench_v2_historical.json`. LongBench v2 originates from
@@ -36,3 +43,5 @@ Benchmark provenance, fixed revisions and scoring definitions are documented in
 documented in [`docs/related_work.md`](docs/related_work.md).
 The historical LongBench evaluation scope and unrecorded upstream revision are
 documented in [`docs/benchmark_longbench_v2.md`](docs/benchmark_longbench_v2.md).
+The three-model OpenAI transfer protocol and reused-cohort scope are documented
+in [`docs/openai_transfer_20261102.md`](docs/openai_transfer_20261102.md).

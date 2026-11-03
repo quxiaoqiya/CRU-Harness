@@ -59,6 +59,28 @@
 
 本轮是 12 个上下文、每题一次推理的先导实验，不是官方排行榜提交。公开数据的预训练污染和底层记录重叠未被排除，当前证据不支持宣称普遍或显著领先。
 
+### OpenAI 三模型迁移重放 · 2026-11-02
+
+保持 V3.2 算法不变，通过官方 Responses API，在**同一组 12 个 OOLONG-synth 来源**上运行以下三个精确模型。这检验了向另一提供方迁移的表现；来源是已用评测集，每模型每来源仅运行一次，本轮不依据新输出调优。
+
+| 模型 | 满分题数／满分率 | 官方均分／100 | 平均输入＋输出 tokens | 执行错误 |
+|---|---:|---:|---:|---:|
+| `gpt-6-sol` | **9/12 · 75.00%** | **75.00** | 25,471 | 0 |
+| `gpt-6-luna` | **6/12 · 50.00%** | **50.00** | 19,400 | 3 |
+| `gpt-6.1-terra` | **10/12 · 83.33%** | **83.33** | 25,441 | 0 |
+
+全部 36 项结果保留在分母中。Luna 的三项错误均为触及输出上限的已接收响应，usage 已知。三路统一使用 reasoning=none、单次 16,384 和每题累计 65,536 token 上限，不发送 temperature 或 seed。319 次生成共使用 **843,748 tokens**，保守生成费用估算为 **$4.699397**，不是实际账单。
+
+完整来源输入封装计数为 **651,081–1,582,486 OpenAI input tokens**。计入完整 direct 提示和输出预留后，6 个来源超过公开的 1,050,000-token 原生窗口；该子组满分题数为 **Sol 4/6、Luna 2/6、Terra 5/6**。这种计量不同于 Qwen 原文 token 数。本轮 direct 只计数、没有生成比较臂，因此不能估计对底座的因果增益。结果支持这组任务上的迁移，同时暴露了 Luna 的输出协议兼容性限制。
+
+[完整协议与逐题结果](docs/openai_transfer_20261102.zh-CN.md) · [English](docs/openai_transfer_20261102.md) · [公开结果 JSON](benchmarks/openai_transfer_20261102.json)
+
+无需凭证或网络即可核对公开指标：
+
+```bash
+python3 -S scripts/verify_openai_transfer_results.py
+```
+
 ### LongBench v2：全量成绩与超长上下文恢复
 
 早期证据窗口版 Harness 还在 **LongBench v2** 上完成了评测，来源为[官方论文](https://arxiv.org/abs/2412.15204)、[官方仓库](https://github.com/THUDM/LongBench)和 [503 题公开数据集](https://huggingface.co/datasets/zai-org/LongBench-v2)。两条路径均使用 `Qwen3.8-Flash-Next-FP8`。
@@ -185,7 +207,7 @@ final_fact_loss_count: 0
 
 ### 接入真实模型服务
 
-在线调用使用 `LongContextHarness.answer_with_structured_facts(sample, client)`。服务需要同时支持 OpenAI 风格的 Chat Completions 和精确 `/tokenize` 计量；只有普通聊天接口不足以执行这条严格预算路径。
+在线调用使用 `LongContextHarness.answer_with_structured_facts(sample, client)`。`ProviderTransport` 要求 OpenAI 风格 Chat Completions 和精确 `/tokenize` 计量。官方 OpenAI Responses API 使用下方独立适配器。两条路径都要求精确计数和完整 usage。
 
 先在本地环境中配置 `Q38_BASE_URL`、`Q38_MODEL`、`Q38_API_KEY`，再准备 UTF-8 文本 `context.txt`：
 
@@ -223,6 +245,25 @@ print(client.summary())
 
 将问题替换为实际任务。短文本可能进入 `direct_pass_v3`；超过请求预算时才进入记录聚合或事实读取路径。服务端需返回完整 `usage`；模型输出和工具 schema 同样计入共同预算。请勿提交凭据、私人来源或运行缓存。
 
+### OpenAI Responses 适配器
+
+沿用相同的 `budget`、`harness` 和输入对象，替换 transport 与 client：
+
+```python
+from long_context_agent.openai_responses_transport import (
+    OpenAIResponsesTransport, OpenAIResponsesBudgetedClient,
+)
+
+transport = OpenAIResponsesTransport(
+    api_key=os.environ["OPENAI_API_KEY"],
+    model="gpt-6-sol",
+    reasoning_effort="none",
+)
+client = OpenAIResponsesBudgetedClient(transport, budget)
+```
+
+适配器使用 Responses 输入 token 计数，关闭自动截断和存储，请求默认服务档，并将输入、输出用量纳入预算。不发送旧采样字段或 chat 模板参数，不做隐式重试，未完成响应会明确记录。当前仅支持文本，不支持模型托管工具。
+
 ### 本地文档接入与核心检查
 
 ```bash
@@ -247,6 +288,8 @@ python -m pytest -q \
 - [V3.2 技术实现](docs/v32_implementation.md)
 - [最新 OOLONG 评测与逐题结果](docs/benchmark_v32.md)
 - [机器可读结果 JSON](benchmarks/oolong_v32_20261101.json)
+- [OpenAI 三模型迁移评测](docs/openai_transfer_20261102.zh-CN.md)
+- [OpenAI 迁移结果 JSON](benchmarks/openai_transfer_20261102.json)
 - [LongBench v2 成绩与评测协议](docs/benchmark_longbench_v2.zh-CN.md)
 - [LongBench v2 逐题结果 JSON](benchmarks/longbench_v2_historical.json)
 - [完整项目书](docs/CRU-Harness_Project_Proposal_V3.2.docx)

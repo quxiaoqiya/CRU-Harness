@@ -59,6 +59,28 @@ All methods use `Qwen3.8-Flash-Next-FP8`, temperature=0, seed=20261101, and thin
 
 This is a 12-context pilot with one run per sample, not an official leaderboard submission or evidence of general or statistically significant superiority. Public-data pretraining contamination and overlap among underlying records have not been ruled out.
 
+### OpenAI transfer replay · 2026-11-02
+
+The unchanged V3.2 algorithm was also run through the official Responses API on **the same 12 OOLONG-synth sources**, using the three exact models below. This tests transfer to another provider; it is a reused evaluation set, with one run per model/source and no current-version tuning against these outputs.
+
+| Model | Full-credit samples / rate | Mean official score /100 | Mean input + output tokens | Execution errors |
+|---|---:|---:|---:|---:|
+| `gpt-6-sol` | **9/12 · 75.00%** | **75.00** | 25,471 | 0 |
+| `gpt-6-luna` | **6/12 · 50.00%** | **50.00** | 19,400 | 3 |
+| `gpt-6.1-terra` | **10/12 · 83.33%** | **83.33** | 25,441 | 0 |
+
+All 36 outcomes are retained. Luna's three errors were received responses ending at the output limit, with known usage. All models used reasoning=none, a 16,384-token request ceiling and a 65,536-token task ceiling; temperature and seed were omitted. The 319 generations used **843,748 tokens** in total. The conservative generation-cost estimate is **$4.699397**, separate from the actual invoice.
+
+Complete source-envelope counts were **651,081–1,582,486 OpenAI input tokens**. Six sources exceeded the published 1,050,000-token native window after full-direct prompt and output reservation: full-credit counts on that subgroup were **Sol 4/6, Luna 2/6, Terra 5/6**. These measurements differ from Qwen raw-text token counts. Direct was counted only; there was no direct-generation arm, so this experiment does not estimate causal gain over each base model. It provides transfer evidence for this task set, with clear output-protocol limitations on Luna.
+
+[Full protocol and per-source results](docs/openai_transfer_20261102.md) · [中文报告](docs/openai_transfer_20261102.zh-CN.md) · [Public results JSON](benchmarks/openai_transfer_20261102.json)
+
+Check the public metrics without credentials or network:
+
+```bash
+python3 -S scripts/verify_openai_transfer_results.py
+```
+
 ### LongBench v2: full evaluation and long-context recovery
 
 The earlier evidence-window Harness was also evaluated on **LongBench v2**, from the [official paper](https://arxiv.org/abs/2412.15204), [repository](https://github.com/THUDM/LongBench), and [503-question public dataset](https://huggingface.co/datasets/zai-org/LongBench-v2). Both paths use `Qwen3.8-Flash-Next-FP8`.
@@ -185,7 +207,7 @@ This demonstrates execution mechanics. It is **not a benchmark** and does not es
 
 ### Connect a real model service
 
-Online execution uses `LongContextHarness.answer_with_structured_facts(sample, client)`. The service must support both OpenAI-style Chat Completions and exact `/tokenize` measurement. A chat-only endpoint is insufficient for this strict-budget path.
+Online execution uses `LongContextHarness.answer_with_structured_facts(sample, client)`. `ProviderTransport` requires OpenAI-style Chat Completions and exact `/tokenize` measurement. For the official OpenAI Responses API, use the separate adapter below. Exact counting and complete usage are required for both paths.
 
 Set `Q38_BASE_URL`, `Q38_MODEL`, and `Q38_API_KEY` in your local environment and prepare a UTF-8 file named `context.txt`:
 
@@ -223,6 +245,25 @@ print(client.summary())
 
 Replace the question with your task. Short inputs may use `direct_pass_v3`; record aggregation or fact-reading paths activate when the request budget is exceeded. The service must return complete `usage`. Model outputs and tool schemas also count toward the shared budget. Keep credentials, private sources, and runtime caches out of commits.
 
+### OpenAI Responses adapter
+
+With the same `budget`, `harness`, and input object, replace the transport and client with:
+
+```python
+from long_context_agent.openai_responses_transport import (
+    OpenAIResponsesTransport, OpenAIResponsesBudgetedClient,
+)
+
+transport = OpenAIResponsesTransport(
+    api_key=os.environ["OPENAI_API_KEY"],
+    model="gpt-6-sol",
+    reasoning_effort="none",
+)
+client = OpenAIResponsesBudgetedClient(transport, budget)
+```
+
+The adapter uses Responses input-token counting, disables automatic truncation and storage, requests the default service tier, and accounts for input plus output usage. It omits legacy sampling and chat-template fields, performs no implicit retries, and records incomplete responses explicitly. This is a text-only adapter; native hosted tools are not supported.
+
 ### Local document ingestion and core checks
 
 ```bash
@@ -247,6 +288,8 @@ The independent Harness offline demo requires only the standard library; develop
 - [V3.2 technical implementation](docs/v32_implementation.md)
 - [Latest OOLONG evaluation and per-sample results](docs/benchmark_v32.md)
 - [Machine-readable results JSON](benchmarks/oolong_v32_20261101.json)
+- [OpenAI three-model transfer evaluation](docs/openai_transfer_20261102.md)
+- [OpenAI transfer results JSON](benchmarks/openai_transfer_20261102.json)
 - [LongBench v2 results and evaluation protocol](docs/benchmark_longbench_v2.md)
 - [LongBench v2 per-sample results JSON](benchmarks/longbench_v2_historical.json)
 - [Full project proposal](docs/CRU-Harness_Project_Proposal_V3.2.docx)

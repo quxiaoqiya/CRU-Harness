@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "description": "Sanitized V3.2 algorithm fingerprint reference for a new protocol reproduction. This is not the byte-identical full reference freeze used by the recorded formal run.",
+  "code_sha256": {
+    "long_context_agent/harness.py": "38e24e66cb7495d81a4e1d3e201bd68505d2cb7164ac7ebe207aa864b32093c2",
+    "long_context_agent/adaptive_evidence_v3.py": "4c75f6e72dbe326b253a9bde85518c47dd12be3ee06b01273a4e9d57d2aa77f7",
+    "long_context_agent/fact_ledger.py": "405dc505b2ce3fba80c6c33ee1fb366b76d484125c2f6927fe3e799191bdf302",
+    "long_context_agent/semantic_coverage.py": "8110ab9640c248ad414f358b7ff778e0db276d2f0ac10b238743782d11e15e42",
+    "long_context_agent/record_protocol.py": "bef3c82e1dfbde9a85722548ba4ec0bf32c1e279b49d34b1153632a4340bbc25",
+    "long_context_agent/experiment_budget.py": "840cd1f5e48d1375421866f99fa14c457fa2a149b42d2f644dd8a12285ee9ee0"
+  },
+  "original_full_reference_freeze_sha256": "dff59a4f7341fb1ddb96bdd63636ec941dc40322f669fe26004004351996c26a"
+}

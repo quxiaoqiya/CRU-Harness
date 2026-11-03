@@ -1,0 +1,41 @@
+__pycache__/
+*.pyc
+webui/build/node_modules/
+.DS_Store
+
+# Independent offline agent runtime state (never product data)
+work/checkpoints/
+work/memory/
+*.checkpoint.json
+*.memory.json
+
+# Local credentials and developer machines
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+config/dev_machine.yaml
+config/llm_providers.yaml
+config/continuous_sync.yaml
+config/database_product_sync.yaml
+
+# Downloaded corpora, provider traces, local environments and build work
+/data/
+/work/
+**/.venv/
+**/venv/
+**/site-packages/
+**/node_modules/
+**/pyarrow_runtime/
+.pytest_cache/
+*.log
+*.sqlite
+*.sqlite3
+*.db
+docs/context_holdout*/
+docs/**/predictions/
+docs/**/journals/
+docs/**/frozen_source/
+docs/**/frozen_preparation/
+draft_*_folder/

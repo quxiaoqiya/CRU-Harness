@@ -1,0 +1,11 @@
+{
+  "source_experiment": "docs/context_holdout_cohort4_v31_20261101",
+  "revision": "3.1",
+  "source_freeze_sha256": "5222d11118ce0d518017905aefba49b8217cb5004252fd684543de996bdc66f3",
+  "files": {
+    "adaptive_evidence.py": "4a20b32ceba1e84790ad57282e3dbc109801ad26728a47be84356c41c48c7e5a",
+    "adaptive_evidence_v3.py": "460e689d16fb88f0e476863917d37faa335c41d4299458c68cc96c62b85f0fbc",
+    "fact_ledger.py": "dbaa91cf9afc0d4484cd9dacc7498c093a2d65349a2fa6cbcae771850c84e288",
+    "record_protocol.py": "bef3c82e1dfbde9a85722548ba4ec0bf32c1e279b49d34b1153632a4340bbc25"
+  }
+}

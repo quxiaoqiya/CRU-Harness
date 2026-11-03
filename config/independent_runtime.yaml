@@ -1,0 +1,28 @@
+# Optional local runtime template. No provider/model is required for deterministic mode.
+mode: deterministic-only
+provider: mock
+capabilities:
+  planner:
+    context_window: 8192
+    supports_vision: false
+    supports_structured_output: true
+    supports_reasoning: false
+    max_output_tokens: 1024
+    max_concurrency: 1
+  text_reader:
+    context_window: 8192
+    supports_vision: false
+    supports_structured_output: true
+    supports_reasoning: false
+    max_output_tokens: 2048
+    max_concurrency: 1
+  vision_reader:
+    context_window: 4096
+    supports_vision: true
+    supports_structured_output: true
+    supports_reasoning: false
+    max_output_tokens: 1024
+    max_concurrency: 1
+cache:
+  schema_version: independent_runtime_v1
+  behavior_hash: mock-deterministic-v1

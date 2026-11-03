@@ -1,0 +1,50 @@
+{
+  "global": {
+    "chars_per_token": 3.7425,
+    "observations": 401
+  },
+  "scopes": {
+    "Code Repository Understanding": {
+      "chars_per_token": 3.7752,
+      "observations": 18,
+      "p25": 3.5189,
+      "p75": 3.964
+    },
+    "Long In-context Learning": {
+      "chars_per_token": 3.7417,
+      "observations": 55,
+      "p25": 3.3825,
+      "p75": 4.0201
+    },
+    "Long Structured Data Understanding": {
+      "chars_per_token": 2.9048,
+      "observations": 19,
+      "p25": 2.6047,
+      "p75": 2.93
+    },
+    "Long-dialogue History Understanding": {
+      "chars_per_token": 3.5506,
+      "observations": 39,
+      "p25": 3.1783,
+      "p75": 4.509
+    },
+    "Multi-Document QA": {
+      "chars_per_token": 3.6893,
+      "observations": 111,
+      "p25": 3.3733,
+      "p75": 4.2399
+    },
+    "Single-Document QA": {
+      "chars_per_token": 3.8537,
+      "observations": 159,
+      "p25": 3.4736,
+      "p75": 4.2594
+    }
+  },
+  "source": {
+    "dataset": "LongBench-v2",
+    "samples_file": "docs/longbench_v2_full/samples.json",
+    "measured_rows": 401,
+    "estimator": "median(chars / provider_prompt_tokens)"
+  }
+}

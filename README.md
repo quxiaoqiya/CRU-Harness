@@ -59,6 +59,50 @@ All methods use `Qwen3.8-Flash-Next-FP8`, temperature=0, seed=20261101, and thin
 
 This is a 12-context pilot with one run per sample, not an official leaderboard submission or evidence of general or statistically significant superiority. Public-data pretraining contamination and overlap among underlying records have not been ruled out.
 
+### LongBench v2 extreme-context comparison · 2026-11-03
+
+**All three tested models answered the largest tested natural source correctly:** its
+complete Direct prompt admission count (including the resource notice and
+16-token safety allowance) is **4,264,583 tokens**, or **4.06×** the
+published 1,050,000-token native window and **260.29×** the Harness's 16,384-token
+working ceiling. This is a tested lower bound on external-source task capacity,
+not an increase in the model's attention window or a measured hard maximum.
+
+| Exact model | Harness correct / all 12 | Harness correct / 8 above-native sources | Full Direct correct delivery / 4 native-admissible sources |
+|---|---:|---:|---:|
+| `gpt-6-sol` | **8/12 · 66.67%** | **6/8 · 75.00%** | 0/4 |
+| `gpt-6-luna` | **6/12 · 50.00%** | **5/8 · 62.50%** | 0/4 |
+| `gpt-6.1-terra` | **7/12 · 58.33%** | **5/8 · 62.50%** | 1/4 |
+
+Full Direct retains the complete source and never truncates. Eight of twelve
+sources exceed native admission; among the other four, two were rejected by
+the provider for context length on every model, and Sol had one uncertain
+delivery failure. Capacity and delivery failures are retained but are not
+classified as semantic wrong answers. All 36 Harness tasks returned answers.
+
+As a separate quality control on the **two longest sources**, balanced source
+head/tail Direct inputs of approximately 786k and 746k tokens scored **Sol 2/2,
+Luna 1/2, Terra 2/2**; Harness scored **2/2 on each model**. The two stronger
+Direct controls therefore tie Harness here. These results establish source
+capacity expansion, not general superiority over usable long-context inputs.
+
+This is a length-selected, previously consumed **12-source regression cohort**,
+not the full 503-question benchmark or a new blind holdout. The LongBench route
+uses multiview evidence retrieval, voting and option verification; it is distinct
+from the OOLONG V3.2 typed-fact aggregation route. Harness has a 65,536-token task
+ceiling, whereas full Direct and the 800k head/tail control have larger single
+requests: **compute budgets are unequal**. All outputs were fixed before labels
+were opened. The report preserves the original incomplete trial, zero-generation
+network recovery, errors, per-source choices, and separate strict-parser checks.
+All 120 token/cost ledgers pass; one Harness outcome has an incomplete exception
+record and is explicitly marked unavailable for full trajectory replay.
+
+[Full report](docs/longbench_openai_limits_20261102.md) · [中文报告](docs/longbench_openai_limits_20261102.zh-CN.md) · [Public results](benchmarks/longbench_openai_limits_20261102.json)
+
+```bash
+python3 -S scripts/verify_longbench_openai_limits_results.py
+```
+
 ### OpenAI transfer replay · 2026-11-02
 
 The unchanged V3.2 algorithm was also run through the official Responses API on **the same 12 OOLONG-synth sources**, using the three exact models below. This tests transfer to another provider; it is a reused evaluation set, with one run per model/source and no current-version tuning against these outputs.

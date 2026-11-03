@@ -1,0 +1,651 @@
+{
+  "schema_version": 1,
+  "status": "pass",
+  "scope": "Independent budget, cost, identity and primary/strict-control score audit",
+  "main_freeze_sha256": "941c86120e66020439571fbe8888999c643ebcf83fc315d7ec7e1e0e1045208d",
+  "recovery_freeze_sha256": "febefea46171ba7d843104aa8857bff82670b597e6b0bb0de6b640e7c7f312c1",
+  "control_freeze_sha256": "dfb25fdb5cd26067a881dca5747b78ded10c7a8e5389091eacb2529a26890c3f",
+  "physical_record_counts": {
+    "original": 75,
+    "recovery": 39,
+    "headtail": 6
+  },
+  "physical_generations_all_phases": 235,
+  "known_input_tokens_all_phases": 9073410,
+  "known_output_tokens_all_phases": 18159,
+  "charged_or_reserved_tokens_all_phases": 18804367,
+  "unknown_usage_requests_all_phases": 13,
+  "logical_main_records": 72,
+  "logical_capacity_probes": 3,
+  "distinct_source_contexts": 12,
+  "phases": {
+    "original": {
+      "records": 75,
+      "physical_requests": 119,
+      "prompt_tokens": 1845083,
+      "completion_tokens": 9156,
+      "charged_tokens": 6086742,
+      "unknown_usage_requests": 7,
+      "known_usage_identity_checks": 112,
+      "unknown_usage_identity_unavailable": 7,
+      "estimated_generation_cost_upper_usd": "9.890959625",
+      "actual_model_counts_on_known_usage": {
+        "gpt-6.1-terra": 54,
+        "gpt-6-luna": 37,
+        "gpt-6-sol": 21
+      },
+      "tier_counts_on_known_usage": {
+        "default": 112
+      },
+      "provider_status_counts_on_known_usage": {
+        "completed": 112
+      },
+      "ledger_error_types": {
+        "OpenAIResponsesTransportError": 7
+      },
+      "safe_provider_event_counts": [],
+      "all_known_identities_match": true,
+      "all_token_and_monetary_checks_passed": true
+    },
+    "recovery": {
+      "records": 39,
+      "physical_requests": 110,
+      "prompt_tokens": 2631070,
+      "completion_tokens": 8937,
+      "charged_tokens": 8120302,
+      "unknown_usage_requests": 6,
+      "known_usage_identity_checks": 104,
+      "unknown_usage_identity_unavailable": 6,
+      "estimated_generation_cost_upper_usd": "24.206739750",
+      "actual_model_counts_on_known_usage": {
+        "gpt-6-luna": 35,
+        "gpt-6-sol": 49,
+        "gpt-6.1-terra": 20
+      },
+      "tier_counts_on_known_usage": {
+        "default": 104
+      },
+      "provider_status_counts_on_known_usage": {
+        "completed": 104
+      },
+      "ledger_error_types": {
+        "OpenAIResponsesTransportError": 6
+      },
+      "safe_provider_event_counts": [
+        {
+          "stage": "generation",
+          "category": "http",
+          "http_status": 400,
+          "code": "context_length_exceeded",
+          "count": 5
+        },
+        {
+          "stage": "generation",
+          "category": "non_http",
+          "http_status": null,
+          "code": null,
+          "count": 1
+        }
+      ],
+      "all_known_identities_match": true,
+      "all_token_and_monetary_checks_passed": true
+    },
+    "headtail": {
+      "records": 6,
+      "physical_requests": 6,
+      "prompt_tokens": 4597257,
+      "completion_tokens": 66,
+      "charged_tokens": 4597323,
+      "unknown_usage_requests": 0,
+      "known_usage_identity_checks": 6,
+      "estimated_generation_cost_upper_usd": "11.87675875",
+      "actual_model_counts_on_known_usage": {
+        "gpt-6-luna": 2,
+        "gpt-6-sol": 2,
+        "gpt-6.1-terra": 2
+      },
+      "tier_counts_on_known_usage": {
+        "default": 6
+      },
+      "provider_status_counts_on_known_usage": {
+        "completed": 6
+      },
+      "ledger_error_types": {},
+      "safe_provider_event_counts": [],
+      "all_known_identities_match": true,
+      "all_token_and_monetary_checks_passed": true
+    }
+  },
+  "generation_cost_upper_usd": "45.974458125",
+  "preflight_cost_upper_usd": "0.001364",
+  "combined_cost_with_preflight_upper_usd": "45.975822125",
+  "global_cap_usd": "50",
+  "raw_first_trial_summary": {
+    "gpt-6-sol": {
+      "direct": {
+        "n_planned": 12,
+        "n_answer_available": 0,
+        "correct_answers": 0,
+        "task_success_rate_all_planned": 0.0,
+        "accuracy_among_available_answers": null,
+        "available_answer_accuracy_is_secondary_conditional": true,
+        "native_admission_denied": 5,
+        "status_counts": {
+          "native_admission_denied": 5,
+          "error": 7
+        },
+        "physical_generations": 2,
+        "charged_or_reserved_tokens": 1168231,
+        "n_native_admissible": 2,
+        "native_eligibility_unknown": 5,
+        "correct_native_admissible": 0,
+        "primary_task_success_rate_native_admissible": 0.0
+      },
+      "harness": {
+        "n_planned": 12,
+        "n_answer_available": 4,
+        "correct_answers": 3,
+        "task_success_rate_all_planned": 0.25,
+        "accuracy_among_available_answers": 0.75,
+        "available_answer_accuracy_is_secondary_conditional": true,
+        "native_admission_denied": 0,
+        "status_counts": {
+          "error": 8,
+          "returned": 4
+        },
+        "physical_generations": 22,
+        "charged_or_reserved_tokens": 180435,
+        "primary_task_success_rate_all_planned": 0.25
+      },
+      "paired_native_admissible": {
+        "n": 2,
+        "both_correct": 0,
+        "direct_only_correct": 0,
+        "harness_only_correct": 0,
+        "both_wrong": 2,
+        "failed_or_missing_answers_retained": true
+      },
+      "paired_available": {
+        "n": 0,
+        "both_correct": 0,
+        "direct_only_correct": 0,
+        "harness_only_correct": 0,
+        "both_wrong": 0,
+        "secondary_conditioned_on_both_answers_available": true
+      }
+    },
+    "gpt-6-luna": {
+      "direct": {
+        "n_planned": 12,
+        "n_answer_available": 2,
+        "correct_answers": 0,
+        "task_success_rate_all_planned": 0.0,
+        "accuracy_among_available_answers": 0,
+        "available_answer_accuracy_is_secondary_conditional": true,
+        "native_admission_denied": 2,
+        "status_counts": {
+          "error": 8,
+          "returned": 2,
+          "native_admission_denied": 2
+        },
+        "physical_generations": 4,
+        "charged_or_reserved_tokens": 3010964,
+        "n_native_admissible": 4,
+        "native_eligibility_unknown": 6,
+        "correct_native_admissible": 0,
+        "primary_task_success_rate_native_admissible": 0.0
+      },
+      "harness": {
+        "n_planned": 12,
+        "n_answer_available": 6,
+        "correct_answers": 4,
+        "task_success_rate_all_planned": 0.3333333333333333,
+        "accuracy_among_available_answers": 0.6666666666666666,
+        "available_answer_accuracy_is_secondary_conditional": true,
+        "native_admission_denied": 0,
+        "status_counts": {
+          "error": 6,
+          "returned": 6
+        },
+        "physical_generations": 36,
+        "charged_or_reserved_tokens": 282757,
+        "primary_task_success_rate_all_planned": 0.3333333333333333
+      },
+      "paired_native_admissible": {
+        "n": 4,
+        "both_correct": 0,
+        "direct_only_correct": 0,
+        "harness_only_correct": 1,
+        "both_wrong": 3,
+        "failed_or_missing_answers_retained": true
+      },
+      "paired_available": {
+        "n": 2,
+        "both_correct": 0,
+        "direct_only_correct": 0,
+        "harness_only_correct": 1,
+        "both_wrong": 1,
+        "secondary_conditioned_on_both_answers_available": true
+      }
+    },
+    "gpt-6.1-terra": {
+      "direct": {
+        "n_planned": 12,
+        "n_answer_available": 0,
+        "correct_answers": 0,
+        "task_success_rate_all_planned": 0.0,
+        "accuracy_among_available_answers": null,
+        "available_answer_accuracy_is_secondary_conditional": true,
+        "native_admission_denied": 3,
+        "status_counts": {
+          "error": 9,
+          "native_admission_denied": 3
+        },
+        "physical_generations": 1,
+        "charged_or_reserved_tokens": 998674,
+        "n_native_admissible": 1,
+        "native_eligibility_unknown": 8,
+        "correct_native_admissible": 0,
+        "primary_task_success_rate_native_admissible": 0.0
+      },
+      "harness": {
+        "n_planned": 12,
+        "n_answer_available": 9,
+        "correct_answers": 4,
+        "task_success_rate_all_planned": 0.3333333333333333,
+        "accuracy_among_available_answers": 0.4444444444444444,
+        "available_answer_accuracy_is_secondary_conditional": true,
+        "native_admission_denied": 0,
+        "status_counts": {
+          "returned": 9,
+          "error": 3
+        },
+        "physical_generations": 54,
+        "charged_or_reserved_tokens": 445681,
+        "primary_task_success_rate_all_planned": 0.3333333333333333
+      },
+      "paired_native_admissible": {
+        "n": 1,
+        "both_correct": 0,
+        "direct_only_correct": 0,
+        "harness_only_correct": 1,
+        "both_wrong": 0,
+        "failed_or_missing_answers_retained": true
+      },
+      "paired_available": {
+        "n": 0,
+        "both_correct": 0,
+        "direct_only_correct": 0,
+        "harness_only_correct": 0,
+        "both_wrong": 0,
+        "secondary_conditioned_on_both_answers_available": true
+      }
+    }
+  },
+  "composite_summary": {
+    "gpt-6-sol": {
+      "direct": {
+        "n_planned": 12,
+        "n_answer_available": 1,
+        "correct_answers": 0,
+        "task_success_rate_all_planned": 0.0,
+        "accuracy_among_available_answers": 0,
+        "available_answer_accuracy_is_secondary_conditional": true,
+        "native_admission_denied": 8,
+        "status_counts": {
+          "native_admission_denied": 8,
+          "returned": 1,
+          "error": 3
+        },
+        "physical_generations": 4,
+        "charged_or_reserved_tokens": 3011993,
+        "n_native_admissible": 4,
+        "native_eligibility_unknown": 0,
+        "correct_native_admissible": 0,
+        "primary_task_success_rate_native_admissible": 0.0
+      },
+      "harness": {
+        "n_planned": 12,
+        "n_answer_available": 12,
+        "correct_answers": 8,
+        "task_success_rate_all_planned": 0.6666666666666666,
+        "accuracy_among_available_answers": 0.6666666666666666,
+        "available_answer_accuracy_is_secondary_conditional": true,
+        "native_admission_denied": 0,
+        "status_counts": {
+          "returned": 12
+        },
+        "physical_generations": 70,
+        "charged_or_reserved_tokens": 574444,
+        "primary_task_success_rate_all_planned": 0.6666666666666666
+      },
+      "paired_native_admissible": {
+        "n": 4,
+        "both_correct": 0,
+        "direct_only_correct": 0,
+        "harness_only_correct": 2,
+        "both_wrong": 2,
+        "failed_or_missing_answers_retained": true
+      },
+      "paired_available": {
+        "n": 1,
+        "both_correct": 0,
+        "direct_only_correct": 0,
+        "harness_only_correct": 0,
+        "both_wrong": 1,
+        "secondary_conditioned_on_both_answers_available": true
+      }
+    },
+    "gpt-6-luna": {
+      "direct": {
+        "n_planned": 12,
+        "n_answer_available": 2,
+        "correct_answers": 0,
+        "task_success_rate_all_planned": 0.0,
+        "accuracy_among_available_answers": 0,
+        "available_answer_accuracy_is_secondary_conditional": true,
+        "native_admission_denied": 8,
+        "status_counts": {
+          "native_admission_denied": 8,
+          "returned": 2,
+          "error": 2
+        },
+        "physical_generations": 4,
+        "charged_or_reserved_tokens": 3010964,
+        "n_native_admissible": 4,
+        "native_eligibility_unknown": 0,
+        "correct_native_admissible": 0,
+        "primary_task_success_rate_native_admissible": 0.0
+      },
+      "harness": {
+        "n_planned": 12,
+        "n_answer_available": 12,
+        "correct_answers": 6,
+        "task_success_rate_all_planned": 0.5,
+        "accuracy_among_available_answers": 0.5,
+        "available_answer_accuracy_is_secondary_conditional": true,
+        "native_admission_denied": 0,
+        "status_counts": {
+          "returned": 12
+        },
+        "physical_generations": 72,
+        "charged_or_reserved_tokens": 591543,
+        "primary_task_success_rate_all_planned": 0.5
+      },
+      "paired_native_admissible": {
+        "n": 4,
+        "both_correct": 0,
+        "direct_only_correct": 0,
+        "harness_only_correct": 1,
+        "both_wrong": 3,
+        "failed_or_missing_answers_retained": true
+      },
+      "paired_available": {
+        "n": 2,
+        "both_correct": 0,
+        "direct_only_correct": 0,
+        "harness_only_correct": 1,
+        "both_wrong": 1,
+        "secondary_conditioned_on_both_answers_available": true
+      }
+    },
+    "gpt-6.1-terra": {
+      "direct": {
+        "n_planned": 12,
+        "n_answer_available": 2,
+        "correct_answers": 1,
+        "task_success_rate_all_planned": 0.08333333333333333,
+        "accuracy_among_available_answers": 0.5,
+        "available_answer_accuracy_is_secondary_conditional": true,
+        "native_admission_denied": 8,
+        "status_counts": {
+          "native_admission_denied": 8,
+          "returned": 2,
+          "error": 2
+        },
+        "physical_generations": 4,
+        "charged_or_reserved_tokens": 3010967,
+        "n_native_admissible": 4,
+        "native_eligibility_unknown": 0,
+        "correct_native_admissible": 1,
+        "primary_task_success_rate_native_admissible": 0.25
+      },
+      "harness": {
+        "n_planned": 12,
+        "n_answer_available": 12,
+        "correct_answers": 7,
+        "task_success_rate_all_planned": 0.5833333333333334,
+        "accuracy_among_available_answers": 0.5833333333333334,
+        "available_answer_accuracy_is_secondary_conditional": true,
+        "native_admission_denied": 0,
+        "status_counts": {
+          "returned": 12
+        },
+        "physical_generations": 72,
+        "charged_or_reserved_tokens": 587106,
+        "primary_task_success_rate_all_planned": 0.5833333333333334
+      },
+      "paired_native_admissible": {
+        "n": 4,
+        "both_correct": 1,
+        "direct_only_correct": 0,
+        "harness_only_correct": 1,
+        "both_wrong": 2,
+        "failed_or_missing_answers_retained": true
+      },
+      "paired_available": {
+        "n": 2,
+        "both_correct": 1,
+        "direct_only_correct": 0,
+        "harness_only_correct": 0,
+        "both_wrong": 1,
+        "secondary_conditioned_on_both_answers_available": true
+      }
+    }
+  },
+  "headtail_primary_correct_counts": {
+    "gpt-6-luna": 1,
+    "gpt-6-sol": 2,
+    "gpt-6.1-terra": 2
+  },
+  "headtail_strict_official_correct_counts": {
+    "gpt-6-luna": 1,
+    "gpt-6-sol": 2,
+    "gpt-6.1-terra": 2
+  },
+  "native_direct_observations": {
+    "advertised_admissible": 12,
+    "actual_generation_attempts": 12,
+    "actual_returned": 5,
+    "known_context_error_responses": 6,
+    "unknown_network_delivery": 1,
+    "admission_denials_are_not_semantic_wrong_answers": true
+  },
+  "source_snapshot_counts": {
+    "original": 56,
+    "recovery": 56,
+    "headtail": 58
+  },
+  "original_and_composite_scores_recomputed": true,
+  "recovery_wrapper_snapshot_separately_verified_by_check_recovery": true,
+  "registration_and_scoring_timing": {
+    "main_frozen_at_utc": "2026-11-03T07:27:10.350397+00:00",
+    "latest_original_outcome_utc": "2026-11-03T08:20:29.201818+00:00",
+    "recovery_frozen_at_utc": "2026-11-03T10:29:59.216424+00:00",
+    "latest_recovery_outcome_utc": "2026-11-03T11:02:14.658071+00:00",
+    "control_registered_at_utc": "2026-11-03T11:03:26.376802+00:00",
+    "control_frozen_at_utc": "2026-11-03T11:04:05.310603+00:00",
+    "latest_control_outcome_utc": "2026-11-03T11:06:38.306309+00:00",
+    "first_control_score_gate_utc": "2026-11-03T11:06:52.705870+00:00",
+    "first_recovery_score_gate_utc": "2026-11-03T11:06:54.168314+00:00",
+    "first_original_score_access_utc": "2026-11-03T11:06:54.885057+00:00",
+    "all_physical_outcomes_precede_all_score_markers": true
+  },
+  "headtail_actual_raw_content_strict_scores_recomputed": true,
+  "harness_strict_actual_candidate_audit": "Separate trajectory audit; compatibility letter is not treated as raw official format",
+  "recovery_eligibility_was_metadata_only": true,
+  "prior_generated_outcomes_never_retried": true,
+  "counting_or_model_api_calls_made_by_this_audit": 0,
+  "raw_labels_answers_prompts_or_facts_written": false,
+  "limitations": [
+    "Cost is an envelope estimate, not invoice; unknown usage retains full reservation.",
+    "Shared production scope and aggregation helpers are used for denominator comparison.",
+    "File metadata and frozen code order are not complete OS or network access forensics.",
+    "Twelve reused sources and two optional lossy-control sources do not establish general accuracy superiority."
+  ],
+  "violations": [],
+  "separate_preflight": {
+    "physical_generations": 3,
+    "known_input_tokens": 249,
+    "known_output_tokens": 15,
+    "known_total_tokens": 264,
+    "cost_upper_usd": "0.001364",
+    "included_in_three_phase_235_generations": false,
+    "api_calls_including_three_preflight_generations": 238
+  },
+  "input_source_hashes": {
+    "143": "b16caff1d29cbe163619651985895582f04055d144f268b15e4121d38efe6420",
+    "260": "8b6776acf54cfa615fd2ad16bd277bb366f750a11f8646ddb0b1482328be6cb4",
+    "453": "1af943f1adb825504f9296f5f50a0ff382a4bc29a559e1fb653ee5c3ae58b6b0",
+    "449": "60bb2747414914bd1b76f083a37bd2a2d00ec98560915f839de3ecbc757158c3",
+    "438": "bf26631e7e87e44c78d55699821c7334f61cd73fa81a343d6b56c2d6954d6846",
+    "33": "673ae44847bcc51d5dc1416a65a25170fe93aaca45401c1a492b0f7c73e58266",
+    "147": "74c029754338b3f1c02f1bc357a85f01034d25bdb1ced02e4b3a2468ea0e7d7f",
+    "257": "3e86943099fc3b2d84a96e2c03515a1504a902031f6996edd88a2ae665d97ca7",
+    "395": "030318c08fdfcbb6ec3628db3433f77b21b8e58b4a3858ce602564634fb544d8",
+    "335": "fff1b15feaf2dcb0e3ed0d288ecf47bfac9a5814d5ed8a6346861d5d8b6750ad",
+    "35": "80d25bc9a8b51c2e6a6728eb93c61da32c75b15f9ddd99acfbcc9d89453e8fbf",
+    "251": "d8a0c1a19ffc18f21e84eb645e815caf9db5e81825997da32c92009bf76d5b75"
+  },
+  "labels_sha256_verified": "a8df67b3215e43d5678a0748be27b44f22e268a69c9d98326ab51dcddf1b0628",
+  "physical_record_sha256_by_phase": {
+    "original": {
+      "143__gpt-6-luna__direct.json": "cc62acc8a3f74df4421a8a7498be380f1fdc85a9b874a6b6a155e9bef0c46199",
+      "143__gpt-6-luna__harness.json": "ffbf16c8aae7260a1ea9cb54be8857b16fd3bae1ffd2a7261af30ab3930a2a3e",
+      "143__gpt-6-sol__direct.json": "c3c79f4934120cc0280a371b427d326ba386257b31ef9920c4475c7201e1afe7",
+      "143__gpt-6-sol__harness.json": "d4cf4dbe4c21928294bdc08082573294eeaae008f7cf133a02ed8f909e8c002d",
+      "143__gpt-6.1-terra__direct.json": "7a9b18d9dd4e1a9b6dd5bad444ab69710ca87ef9d1c41a5b84be06c6f9f712bc",
+      "143__gpt-6.1-terra__harness.json": "e1b90d4553a65b23f761f5d95874f1c189766a9cd8abf1a280ff972e51a8b7df",
+      "147__gpt-6-luna__direct.json": "b86351b8ac114fc14fd60424c14f603ba1723dffc18d510ba2bc7550fdf5a0c9",
+      "147__gpt-6-luna__harness.json": "655f83ecffaf10c83d25908157637960fcda273ca15328441627cf12510b86f3",
+      "147__gpt-6-sol__direct.json": "2af504101b3d99835a8480f7af67800eb23fe1bf20936c85fb1fb5e953904764",
+      "147__gpt-6-sol__harness.json": "a39d26bcefda3976dc06a600c3808b70e2cc9ca2e78b7996311a59ae6565c8b0",
+      "147__gpt-6.1-terra__direct.json": "3df31bb8cb97f2e318d60b918f15b3dd43d41852ace581d39d3610d9d651c290",
+      "147__gpt-6.1-terra__harness.json": "89589cea203150e1d49e55cfd2265889ef518f9d27183a8bf874691892b03519",
+      "251__gpt-6-luna__direct.json": "955b0fd93a04885211e1f59a4bd26af519d758375819dafc7fec2a829eb89acf",
+      "251__gpt-6-luna__harness.json": "6ce12383e24d6209d34af671743403a6e8150c0b9d3766ca05caf3c1ec4806f4",
+      "251__gpt-6-sol__direct.json": "062ece774036ce39d06156eb049de2681b1de6859eedcf403c901e87a9f3d517",
+      "251__gpt-6-sol__harness.json": "73ac1623743457e0e76dbda40a7c950c3d2b10abe490a8f04e48259cd15c2888",
+      "251__gpt-6.1-terra__direct.json": "6edf308817968b839caecbe405bd39e8ffc95befbc79f1ff3f87e634fc279bf4",
+      "251__gpt-6.1-terra__harness.json": "2843f114a25466ea857f7cf3bd5a1bb0258f6bc7789bad2e926583dc9505980e",
+      "257__gpt-6-luna__direct.json": "4e70a155c447696d4c8ddd6610d304763d9cee9db9685d359156366bc437697b",
+      "257__gpt-6-luna__harness.json": "5d1f0c310ad30ee89eb246d299fa6d79266571658fa3d44315764af58ac0bea4",
+      "257__gpt-6-sol__direct.json": "3a62408f58392984025192be24c83e507c7fedadc156a90aa0ac4ea19edb15d4",
+      "257__gpt-6-sol__harness.json": "ab44058470850f948bb6933dfd5674c12d40841d7554a275c7fcaf905006c844",
+      "257__gpt-6.1-terra__direct.json": "a04cd62bf636af98ae346d07ea49ecf977ee4f05f8514af69665419b6cf7c533",
+      "257__gpt-6.1-terra__harness.json": "68bca0b38dc7db7ec43d8c478b9534a5e00c449dc51a70afcaf0293184bc075c",
+      "260__gpt-6-luna__direct.json": "3e52cbcc750c44f8b4fe2fc7963fe668a0696016fc03d5124c3e5326a2cc4e6c",
+      "260__gpt-6-luna__harness.json": "413683db0c1dcea2b4ea097d44a664b3bb862f862b638a0badfa35eb4a633411",
+      "260__gpt-6-sol__direct.json": "e01d2b4565629082247622a0babf767d14918de7752b7f70704e0a94d69639f7",
+      "260__gpt-6-sol__harness.json": "00e85c6065c04f3cf4045da6d415a245269e6089821520ff67ad67e58643345e",
+      "260__gpt-6.1-terra__direct.json": "838fbc5d2bef1df3e411a99e272ca1d15145360b023d21190c02ccc8d7f9f74d",
+      "260__gpt-6.1-terra__harness.json": "2a6aed34971c899a0e1d18ff0418aae8bdd32f1c679b0328578ce36d5f3cefb0",
+      "335__gpt-6-luna__direct.json": "31ddb852160017388e38160260fc4155e5ffe50c2c2aedeedfbd4758f5b87d35",
+      "335__gpt-6-luna__harness.json": "a88231ff3327e4c1892d1b8751efe328d24e7c0d253039a4c5ed974f4a6259e8",
+      "335__gpt-6-sol__direct.json": "9349e1f27118c769a270a4845d06632a37868c6a8ce37b48853749ae4f427014",
+      "335__gpt-6-sol__harness.json": "9b19123dba81cf27a618fb13c513d4fe8c3fd2e1dbf60c9e83ce56f287389de5",
+      "335__gpt-6.1-terra__direct.json": "e565500635eca2d78a571ff33a6731377b371e4b07f435e49939c28b5b16244d",
+      "335__gpt-6.1-terra__harness.json": "337b6f33de6d4bcc64ab37a9b53fa0ee627ea76ba0348363a2078c0b365bbda4",
+      "33__gpt-6-luna__direct.json": "f2e22c9a44e8d13365e7119581516ffc2829d7c1b5be0813965732879c7f575f",
+      "33__gpt-6-luna__harness.json": "45c343fce113dcfd5fa095de8fc4ee08bf8ca7d7e0f437038fcd6d2674779431",
+      "33__gpt-6-sol__direct.json": "7962e3516d0f97d9160bbad11469e594ef7417dd350dd11a14f7581d3696f814",
+      "33__gpt-6-sol__harness.json": "758359d5a135c2236386d54ce2c15906974d18e3746d32e08547b37b654342bc",
+      "33__gpt-6.1-terra__direct.json": "bda31884cd89bb05802721125620d7f5f86f4bcd62f26833c9db14bdbffcd819",
+      "33__gpt-6.1-terra__harness.json": "fdf15324ab7b85d8bbc72e56e71c61eaaca6bfcdb6c37b642edd6a02ded7b715",
+      "35__gpt-6-luna__capacity_probe.json": "2cb2446ac9502932c592001e4f4b259907f38e19774dd1136018bc7f0ca3e1b5",
+      "35__gpt-6-luna__direct.json": "e52e48faffd9e59dfc8deb82ada2a4482a37da099a96b903bf47a89453929ac2",
+      "35__gpt-6-luna__harness.json": "4b5950e48cde82d8e8d9dc0d15da117989916d7c6534d2b095656cba8e9bde06",
+      "35__gpt-6-sol__capacity_probe.json": "ecd1a66ee5bca113987eb9b8ad7a5c8e02358340f9332d3e85bb95eceb604b4f",
+      "35__gpt-6-sol__direct.json": "0246ffedaf38aed34e4d4a43d8099dbe1dfb5959e37a5ec1755c741c5bb32d83",
+      "35__gpt-6-sol__harness.json": "34bec0a360ae530340492cf20060bb9f2dbb3b109ba88f7d72246b3c5db84e04",
+      "35__gpt-6.1-terra__capacity_probe.json": "ef941a9257523f0b7f7291ff82fb9f122c640a4e72ea05c38497860913e75a7d",
+      "35__gpt-6.1-terra__direct.json": "0ef8a5f09294002b7d35721bb9932f344f43430d291476d66d9ae10fbd7018b5",
+      "35__gpt-6.1-terra__harness.json": "a647d0458f398bcff10ebe48eba9356b62bd8f9cc7149533bb66c6790c79fa58",
+      "395__gpt-6-luna__direct.json": "aaffedc75f554ab04c009ce3f922771c2babcd63c04e7523f9f3d002e153a522",
+      "395__gpt-6-luna__harness.json": "72c69406277fe25e9991bae662e3d17388c021298bde85d8e2ad3e3ee03e69b0",
+      "395__gpt-6-sol__direct.json": "951c75bae3f658edf316b485593f697e35d6fb120b877e611d1baed3bae45cd6",
+      "395__gpt-6-sol__harness.json": "abf845bc873c57fb82e1b6671427eed8f054cc7532046e1b3b9b4116bd4fea50",
+      "395__gpt-6.1-terra__direct.json": "bc01c89eea327e617b8023749d4523ebf606f217e5bd271a5d74abd5a206e11c",
+      "395__gpt-6.1-terra__harness.json": "7783f68ce6319893c59133e2b6aa28c7ad44571fc5bb1e9f7c2e25b89c9bcb30",
+      "438__gpt-6-luna__direct.json": "5c72bab605ccbf2102494f7c94eb22c896e94a1202d480ff594d5bee788f94e7",
+      "438__gpt-6-luna__harness.json": "207b9cb1f6636424975117b6a6f41cbeb9fe2be05839952ecf7bc65aa29c68e7",
+      "438__gpt-6-sol__direct.json": "5bf04bd808c8135769181959dbfde28e6e8a2e0cb212989defce0eec4789b564",
+      "438__gpt-6-sol__harness.json": "94f86fb5a0954ed6a536337643711e6b0e31571c05cc045601dd9a3e5025c058",
+      "438__gpt-6.1-terra__direct.json": "d965edc6b1cb0555f33be81398885481ddb1a6c1f229bcb7b3eb01e281fda952",
+      "438__gpt-6.1-terra__harness.json": "b3f5a180b1f6762f8380787975e699d9b10488e993ec23b0497200d4cc54be87",
+      "449__gpt-6-luna__direct.json": "bd6bce7beba0fee94636af3b006c89fd06b21b27bab8716864bc85efafb22e83",
+      "449__gpt-6-luna__harness.json": "3d3fb449723e9ebe4fb42acfac7b3ca45f37d83260cce827fdca86bf9294cf2c",
+      "449__gpt-6-sol__direct.json": "3bbd64893a1b93eb018001b4030d596e40d4cd7edbaf50a45284c9620cff5e9e",
+      "449__gpt-6-sol__harness.json": "7014c5fd76979d3716412e039c48ff87e309df96bc27040811076c21f2a93775",
+      "449__gpt-6.1-terra__direct.json": "94b3dfe6f3da43ea5cfaff0ad2fb1d889e8246ee6ced03c0c20c59e6303f8784",
+      "449__gpt-6.1-terra__harness.json": "6f9c63d8280bb69e68091128282a770c3abad409164e9cb431f35f5e6238550d",
+      "453__gpt-6-luna__direct.json": "fbc7a9cac97ed80e6f65a1e5525b38c6e37ea227275e9fd10bdb10c4fa713e1e",
+      "453__gpt-6-luna__harness.json": "2bc0720c4eb701fe5e66f5e916cf3e4b429f13336ecda179b1052343bfc6e185",
+      "453__gpt-6-sol__direct.json": "2fd41319326b9e17d4e3a238aac4e7430395b916a30a84701c7f237d76e8b64a",
+      "453__gpt-6-sol__harness.json": "6fb5c2e60662ef8c7161cd9f3c1079fc447f73c77b6a0174c0c82614d3063553",
+      "453__gpt-6.1-terra__direct.json": "80092e478d9acf9dc7a9bb47609218b4de7a7b1bad50870e99559a11f32a868f",
+      "453__gpt-6.1-terra__harness.json": "983c09a96b768c4567c9584c34d1f7ffcebc4818f77caedeb5d872276354a360"
+    },
+    "recovery": {
+      "143__gpt-6-luna__direct.json": "025b18c46f917d46e86029776373918f21277b3fc262a10e632a7d7e8e1a2059",
+      "143__gpt-6-luna__harness.json": "3c136c627c542dedea58d781230b48c69c72cce866ddc931c6f7495100d41860",
+      "143__gpt-6-sol__harness.json": "ff11145be46895d0307864adeaeb7cbd012089d3e567ab6beb8626064c01718f",
+      "143__gpt-6.1-terra__direct.json": "5831c4c79ff375185c3e379a53a6324617311d4f8c28acecdc0af46aa5eddbb5",
+      "147__gpt-6-sol__direct.json": "0ba8d96943949ca695f3724e9c10526a9e0181fbc3756919b5afac739c746dc1",
+      "147__gpt-6-sol__harness.json": "04ae4cfc08f08864767c1f61c8e3a320ee50fe7d6e6c006c0b96f33f4ba0afb8",
+      "147__gpt-6.1-terra__direct.json": "ea2f10fceb2e5e9fe0201656327979eaa8e380df3fff3576092cbc0092dcf900",
+      "251__gpt-6-luna__direct.json": "0493ece3be2e56b1773722cd354586906734728f5b375a60289093283f89c683",
+      "251__gpt-6-luna__harness.json": "9d4c80370c94cc437b27a3aa418db40f96874f0b7cb425b955fb577d4f6c7619",
+      "251__gpt-6.1-terra__harness.json": "75e3c3d7ec1e544c62d84aa3dcf9d650b2a7a7b0d178d48b32555f491951b73a",
+      "257__gpt-6-sol__harness.json": "034aaf66feb121e7a30089836bc1827da74690882797a7e8637261930c1c31b3",
+      "257__gpt-6.1-terra__direct.json": "3af9c32bb7a6966fca6a6fc65d03cb9e5109bbf783fe60fe74b30d4438ac2f1e",
+      "257__gpt-6.1-terra__harness.json": "1f1d29f0969480b2d9f89c3fcfc8aa2b8af09b3fae2da23b58ee7f415b9c021d",
+      "260__gpt-6-luna__direct.json": "b2facec2febf4c65c2a86dbfb6480cb5c8b15d64a96e7358d56f1bbd99c98f83",
+      "335__gpt-6-sol__direct.json": "38c536340723cd54a0f688af620c51ed279d9551c0f6ce89a25d746a1e59e33d",
+      "335__gpt-6-sol__harness.json": "d0cc30e8a16ed92de376b15d83543c50a639543ce1f2f171842cf1526ac09aa5",
+      "33__gpt-6-sol__harness.json": "94bef183e318a0279c690de934db1a5bcaa8527a0fcca51e3a6542576d47e1de",
+      "33__gpt-6.1-terra__direct.json": "734ba658259f3690f061b527c5fd483dc1074a0fd84f516d4f4657a5fe14ba5d",
+      "35__gpt-6-luna__capacity_probe.json": "cf7b8f5cdcabccf9343d345d140c1b3ebcbbb3db96343d2b9103302566f3603c",
+      "35__gpt-6-luna__harness.json": "1d6c705f85650be2edffc17c70e36d33c5edeff1a36a98a5e169cfae58f65ae3",
+      "35__gpt-6-sol__capacity_probe.json": "f41239a9cf0b4fee28aa05c8a71d6331b8e4c7bbd9b926e6353c57b0cca94919",
+      "35__gpt-6-sol__direct.json": "ff19dec2757b8e135e6537332be92e2acc4a70f7b0c23af831bcbc160a8ea3ce",
+      "35__gpt-6-sol__harness.json": "b701e8f3600f77abeaa83f9ecaf11023eca37f9e621fb0f02683fe67ee4d2621",
+      "35__gpt-6.1-terra__capacity_probe.json": "88a68bc2d586297cbb73aaf0aea91e25ce9d0e9eeaf04ddbca9ef8caefd37593",
+      "35__gpt-6.1-terra__direct.json": "3b7f1f8b896883932df78d206920788cc77801a9d82805899d2deeab424ceb9f",
+      "35__gpt-6.1-terra__harness.json": "436b7576171467c8bdc833917012777c899d2a0cd1bfadda72a4fbdfc9ac07ee",
+      "395__gpt-6-luna__harness.json": "9238317a0bb4da074a5b1ca5e07cf9d7f42f0d838f66e34ab8f2ed1226816105",
+      "395__gpt-6-sol__harness.json": "a6981d042414649e9b1e00922af7a063728637b62b6cf15f23d61060739802f1",
+      "395__gpt-6.1-terra__direct.json": "42e4927371339ac5722475fd55c066429353e3c6c6d0d738137c5348f2415aed",
+      "438__gpt-6-luna__direct.json": "bb6091723b92b1f84c564b979531f59f4b92747251f1e0608e14f65904d1849d",
+      "438__gpt-6-luna__harness.json": "857c4f2b294de82cb8481357b123bf80b1a7c67fbfb4517b25b38f62e5da3446",
+      "449__gpt-6-luna__direct.json": "6b3e1174bfef64106417a5822ae19aad2adaaed3ea1bc274ced43a325adf31d1",
+      "449__gpt-6-sol__direct.json": "38d008305dfb65683f7ca6ad1a233c009900e0bcc4787804cb8b4ae00297cd12",
+      "449__gpt-6-sol__harness.json": "a160adbe8f4354d8144af81a58a4616ae459364dd783fedc4f4c8936b8b7c7d3",
+      "449__gpt-6.1-terra__direct.json": "5fb8dfdc4aa807ca1c4e11b8345cb50b6d6faa2de1aff662f0c86783268e5f86",
+      "453__gpt-6-luna__direct.json": "aa168f2f99b4088bd232d2ac9da2f39d47f031b64364fb821cdff7d8281e1494",
+      "453__gpt-6-luna__harness.json": "10f7a91bc9035efe05b7d4bd062e9697eaf13eac341d3ba59d609be7906b89f5",
+      "453__gpt-6-sol__direct.json": "7905b8d161596e8dd9a9dd810876e237d3e8e2f293a7b924c33f54accff95a5b",
+      "453__gpt-6.1-terra__direct.json": "51381b3bdb8e0ed9511f5c9797bae468014767613913e1358d344491882de64e"
+    },
+    "headtail": {
+      "143__gpt-6-luna__headtail_control.json": "20a116197b477311288fb507370f37e81a9a4201694a49863404ac63aac3860a",
+      "143__gpt-6-sol__headtail_control.json": "857c7189367d7bc62179afe267468630d5f614bc4d09a9300687b874dd03b7fe",
+      "143__gpt-6.1-terra__headtail_control.json": "70e90c09b85977afe246883fd8b840d0698ea560384335706eb93c6ccd7d407d",
+      "260__gpt-6-luna__headtail_control.json": "c487d0daf3d964f6314fc5b2d43bbe5bcc18f76f30c230f6ef4cafcb989d4d71",
+      "260__gpt-6-sol__headtail_control.json": "6757eb139e65434b236c00817455e0240cb85e670178c110e31c5d8d982b20af",
+      "260__gpt-6.1-terra__headtail_control.json": "89a71c1d62690194bafc6b83fa559323c447181ebae4c7d803a0697b0d5f6dc3"
+    }
+  },
+  "auditor_source_sha256": "387a5b16e9d297fd92ae34097a7e3a5a325564662364b6ca275dac39218d3c73",
+  "auditor_archival_repository_path": "scripts/audits/audit_longbench_openai_cost_scores.py"
+}

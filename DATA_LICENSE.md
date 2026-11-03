@@ -21,6 +21,13 @@ CRU-Harness does not claim authorship of these benchmarks or their source datase
   `benchmarks/longbench_v2_historical.json`. LongBench v2 originates from
   [Bai et al.](https://arxiv.org/abs/2412.15204); obtain its data from the
   [official dataset](https://huggingface.co/datasets/zai-org/LongBench-v2).
+- Derived three-model LongBench capacity and accuracy results, answer letters,
+  token accounting, source hashes, and head/tail span metadata in
+  `benchmarks/longbench_openai_limits_20261102.json` and its associated audits.
+  These preserve a previously consumed 12-source regression cohort; they do
+  not redistribute the source contexts, option text, or raw model replies.
+- The upstream LongBench software license and prompt/parser attribution in
+  [`third_party/longbench/`](third_party/longbench/README.md).
 - An unmodified official OOLONG scoring helper and its MIT notice in
   [`third_party/oolong/`](third_party/oolong/README.md).
 
@@ -45,3 +52,6 @@ The historical LongBench evaluation scope and unrecorded upstream revision are
 documented in [`docs/benchmark_longbench_v2.md`](docs/benchmark_longbench_v2.md).
 The three-model OpenAI transfer protocol and reused-cohort scope are documented
 in [`docs/openai_transfer_20261102.md`](docs/openai_transfer_20261102.md).
+The LongBench extreme-context comparison, incomplete first trial, zero-generation
+recovery and separate head/tail control are documented in
+[`docs/longbench_openai_limits_20261102.md`](docs/longbench_openai_limits_20261102.md).

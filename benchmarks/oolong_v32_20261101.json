@@ -119,7 +119,7 @@
   },
   "summary": {
     "harness_v32": {
-      "name": "Harness V3.2",
+      "name": "CRU-Harness V3.2",
       "n": 12,
       "mean_official_score": 0.8125,
       "full_credit_count": 9,
@@ -990,5 +990,20 @@
     "Source-context disjointness does not exclude reused underlying records or pretraining exposure.",
     "Wall times include controller/API/tokenizer effects and shared-service concurrency; this study does not establish a latency or FLOPs advantage.",
     "The local baseline adaptations and strict budget can affect task completion; do not substitute these scores for the original papers' results."
-  ]
+  ],
+  "attribution": {
+    "benchmark_creator_role": "OOLONG is an external benchmark; CRU-Harness is the system evaluated here.",
+    "benchmark_paper": {
+      "title": "Oolong: Evaluating Long Context Reasoning and Aggregation Capabilities",
+      "url": "https://arxiv.org/abs/2511.02817"
+    },
+    "official_benchmark_repository": "https://github.com/abertsch72/oolong",
+    "official_dataset": "https://huggingface.co/datasets/oolongbench/oolong-synth",
+    "related_work_papers": {
+      "RAG": "https://arxiv.org/abs/2005.11401",
+      "RLM": "https://arxiv.org/abs/2512.24601v3",
+      "MemGPT": "https://arxiv.org/abs/2310.08560"
+    },
+    "score_status": "Local controlled evaluation using the pinned official scorer; not an official online leaderboard result."
+  }
 }

@@ -1,4 +1,4 @@
-# Harness V3.2 API
+# CRU-Harness V3.2 API
 
 当前主要入口为 `LongContextHarness.answer_with_structured_facts(sample, client, config=None)`。
 它执行真实任务：完整提示可容纳时直通模型，超预算时进入记录聚合或原文事实读取。

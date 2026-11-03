@@ -1,20 +1,31 @@
-# Data licensing policy
+# CRU-Harness data and third-party materials
 
-The repository does not grant redistribution rights for source articles, PDFs,
-Uni-Parser full-text caches, or figures. The current internal 10k corpus has no
-verified document-level licenses and is therefore classified as **restricted**.
+CRU-Harness is a standalone software project. Its published benchmark summary
+reports experiments on the external OOLONG-synth benchmark; CRU-Harness does not
+claim authorship of that benchmark or its source datasets.
 
-A public ChemRoute-223 release may include only:
+## Included materials
 
-- bibliographic metadata whose source terms permit redistribution;
-- derived scientific facts allowed by applicable law and source terms;
-- short evidence quotations where legally permitted;
-- annotations created by the project under an explicitly selected data license.
+- Project-authored source code, documentation, synthetic examples and tests.
+- Derived evaluation results, sample identifiers, version references and hashes
+  in `benchmarks/oolong_v32_20261101.json`.
+- An unmodified official OOLONG scoring helper and its MIT notice in
+  [`third_party/oolong/`](third_party/oolong/README.md).
 
-Every document asset must carry a license URI or an explicit `unknown` /
-`restricted` status. Open-access status alone is not a redistribution license.
-The release builder blocks publication while any asset intended for public
-distribution lacks a verified license.
+The repository does not distribute the benchmark source contexts, research
+articles, PDFs, figures, model request traces, private deployment configuration
+or credentials. Obtain external datasets from their official sources under
+their respective terms. The scoring helper's MIT license does not automatically
+license the underlying benchmark datasets.
 
-Project owners must select and record the final license for project-authored
-annotations and derived datasets before assigning a public dataset DOI.
+## Software and source-data rights
+
+No project-wide open-source license has been selected for the project-authored
+software. This data notice does not grant a software or dataset license.
+Third-party materials retain their original authorship and applicable license
+notices. Public availability or open-access status alone does not establish
+permission to redistribute source documents.
+
+Benchmark provenance, fixed revisions and scoring definitions are documented in
+[`docs/benchmark_v32.md`](docs/benchmark_v32.md). Related method attributions are
+documented in [`docs/related_work.md`](docs/related_work.md).

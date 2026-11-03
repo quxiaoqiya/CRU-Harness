@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use CRU-Harness, cite this software and separately acknowledge the benchmark and baseline sources used."
+type: software
+title: "Context Is All You Need: Context Read and Understand Harness (CRU-Harness)"
+authors:
+  - name: "CRU-Harness contributors"
+version: "3.2.0"
+date-released: "2026-11-02"
+repository-code: "https://github.com/quxiaoqiya/CRU-Harness"
+url: "https://github.com/quxiaoqiya/CRU-Harness"
+abstract: >-
+  CRU-Harness is a standalone execution harness for reading and understanding
+  sources beyond a model's single-call context window. It combines bounded
+  model calls with source-bound facts, typed aggregation, exact-body reuse,
+  explicit unknown bounds, shared generation budgets and replayable audits.
+keywords:
+  - long context
+  - language model harness
+  - provenance
+  - evidence aggregation
+  - benchmark auditing

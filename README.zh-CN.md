@@ -12,7 +12,51 @@
 
 [技术实现](docs/v32_implementation.md) · [评测与逐题结果](docs/benchmark_v32.md) · [结果 JSON](benchmarks/oolong_v32_20261101.json) · [完整项目书](docs/CRU-Harness_Project_Proposal_V3.2.docx) · [执行 API](docs/harness_api.md)
 
-## 最新成果
+## 最新评测：LongMemEval-V2 Small 全部 451 题 · 2026-11-04
+
+**可选视觉 V3 控制器为 209/451（46.34%），原生窗口首尾直连为 72/451（15.96%），
+旧视觉 V1 为 208/451（46.12%）。** 本轮全量结果作为当前 LongMemEval-V2 的主要结论；
+下文不同日期的小样本实验分别保留，不合并分数。
+
+| 方法 | 全部451题 | 此前未用375题 | 带截图29题 | 方法计量推理tokens |
+|---|---:|---:|---:|---:|
+| Qwen 直连，原文首尾截取 | 72/451 · 15.96% | 59/375 · 15.73% | 8/29 · 27.59% | 112,564,905 |
+| 旧视觉 Harness V1 | 208/451 · 46.12% | 172/375 · 45.87% | 11/29 · 37.93% | 17,241,413 |
+| **视觉证据交接 V3** | **209/451 · 46.34%** | **173/375 · 46.13%** | **12/29 · 41.38%** | **17,279,358** |
+
+V3 较直连提升 **30.38 个百分点**，方法计量推理 tokens 减少 **84.65%**。相对旧 V1，
+新增答对4题、损失3题，净增仅1题。错误前提识别仍是短板：两种 Harness 均为 **28/128**，
+直连为 **4/128**。原默认路径保留；视觉 V3 为显式实验入口，与核心 V3.2 版本分开命名。
+
+来源为 [LongMemEval-V2 官方代码](https://github.com/xiaowu0162/LongMemEval-V2/tree/2cc8c540bdb87fe6761629b585e727e1c4704520)
+和[固定版本数据](https://huggingface.co/datasets/xiaowu0162/longmemeval-v2/tree/f152293e235517d504809563c833d7190b8c713b)，
+使用 **Small 档，每题100条历史轨迹**。模型均为 `Qwen3.8-Flash-Next-FP8`。直连每次／累计上限
+262,144 tokens；Harness 单次16,384、每题累计65,536、最多8次生成、最多4096输出。
+这是同模型、不同预算配置的比较，直连仅保留原始来源首尾片段。
+
+**1353条方法结果对应931个独立执行任务，并非1353次独立模型实验。** V1 与 V3 在无题图时
+调用完全相同的文本流程，422条预测和相应裁判结果明确共享。实际物理用量只计一次：
+**2093次推理、130,747,706 tokens**；裁判另计 **256次、330,210 tokens**。
+表中方法计量不能相加当作实际物理计费。
+
+全部推理固定后才打开评分标签；**931/931条独立执行轨迹离线重放通过**，公开结果校验通过。
+LLM 题使用 Qwen 替代默认裁判，确定性题保留官方匹配规则。不是官方榜单或 LAFS 分数。
+两份历史复用；76题此前已用，375题未用。29道视觉题中28题此前已用，因此视觉全量主要是回归评测。
+规则得分不能证明回答中的所有附加解释均有依据。原图、参考答案和私人请求日志留在本地。
+
+[中文完整审计与逐题结果](docs/longmemeval_v2_full_20261104.zh-CN.md) ·
+[English full report](docs/longmemeval_v2_full_20261104.md) ·
+[结果JSON](benchmarks/longmemeval_v2_full_20261104.json) ·
+[1353条CSV](benchmarks/longmemeval_v2_full_20261104.csv) ·
+[视觉V3接口与边界](docs/visual_evidence_handoff_v3.md) ·
+[此前V3开发／新题对照](docs/longmemeval_v2_visual_handoff_20261104.zh-CN.md)
+
+```bash
+python3 -S scripts/verify_longmemeval_v2_full_results.py
+python3 -S scripts/verify_longmemeval_v2_visual_handoff_results.py
+```
+
+## 百万级来源容量结果：核心 V3.2
 
 以下数据来自 2026-11-01 冻结的 V3.2 OOLONG-synth 本地受控实验，本次独立发布沿用该实验记录。12 个来源具有不同的 context ID 和内容哈希，未参与本项目此前调优；实测长度全部超过本次 Qwen 服务报告的原生 **262,144 tokens** 上限。
 

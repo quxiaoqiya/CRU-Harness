@@ -12,7 +12,62 @@
 
 [Technical implementation](docs/v32_implementation.md) · [Evaluation and per-sample results](docs/benchmark_v32.md) · [Results JSON](benchmarks/oolong_v32_20261101.json) · [Full project proposal](docs/CRU-Harness_Project_Proposal_V3.2.docx) · [Execution API](docs/harness_api.md)
 
-## Results at a glance
+## Latest evaluation: all 451 LongMemEval-V2 Small questions · 2026-11-04
+
+**The optional V3 visual controller scores 209/451 (46.34%), versus 72/451
+(15.96%) for native-window head/tail Direct and 208/451 (46.12%) for visual V1.**
+The full run replaces small-pilot scores as the current LongMemEval-V2 summary;
+the dated experiments below remain separate records.
+
+| Method | All 451 | Previously unused 375 | Screenshot questions 29 | Method-assigned inference tokens |
+|---|---:|---:|---:|---:|
+| Qwen Direct, original head/tail spans | 72/451 · 15.96% | 59/375 · 15.73% | 8/29 · 27.59% | 112,564,905 |
+| Visual Harness V1 | 208/451 · 46.12% | 172/375 · 45.87% | 11/29 · 37.93% | 17,241,413 |
+| **Visual handoff V3** | **209/451 · 46.34%** | **173/375 · 46.13%** | **12/29 · 41.38%** | **17,279,358** |
+
+V3 improves on Direct by **30.38 percentage points**, with **84.65% fewer
+method-assigned inference tokens**. Against V1 it gains four answers and loses
+three, a net gain of only one. Flawed-premise questions remain weak: **28/128**
+for either Harness versus **4/128** for Direct. The original default remains;
+visual V3 is an explicit experimental option, distinct from the core V3.2 version.
+
+The benchmark is the [official LongMemEval-V2](https://github.com/xiaowu0162/LongMemEval-V2/tree/2cc8c540bdb87fe6761629b585e727e1c4704520)
+and [pinned dataset revision](https://huggingface.co/datasets/xiaowu0162/longmemeval-v2/tree/f152293e235517d504809563c833d7190b8c713b),
+**Small tier, 100 historical trajectories per question**. The model is
+`Qwen3.8-Flash-Next-FP8`. Direct has a 262,144-token request/task limit; Harness
+has 16,384/request and 65,536/task, at most eight generations and 4,096 output
+tokens. This is same-model, different-budget evaluation; Direct truncates the
+source to original head/tail spans.
+
+**1,353 method outcomes represent 931 independent execution jobs, not 1,353
+independent model runs.** V1 and V3 have the identical no-query-image fallback;
+422 text-path predictions and their judgments are explicitly shared. Actual
+physical usage counts that path once: **2,093 inference generations / 130,747,706
+tokens**, plus **256 judge generations / 330,210 tokens**. Method-assigned totals
+in the table must not be summed as actual physical billing.
+
+All predictions were fixed before scoring access. **931/931 physical request
+trajectories replay offline**, and the public result verifier passes. Qwen
+substitutes for the default LLM judge; deterministic questions retain upstream
+matching rules. This is not an official leaderboard or LAFS score. Two histories
+are reused; 76 questions were previously consumed and 375 were unused. Of 29
+screenshot questions, 28 had already been used, so the full visual score is
+primarily a regression result. Rule scores do not certify every extra claim in
+an answer. Raw screenshots, labels and request logs remain local.
+
+[English full report](docs/longmemeval_v2_full_20261104.md) ·
+[中文完整审计及逐题结果](docs/longmemeval_v2_full_20261104.zh-CN.md) ·
+[Results JSON](benchmarks/longmemeval_v2_full_20261104.json) ·
+[All 1,353 rows](benchmarks/longmemeval_v2_full_20261104.csv) ·
+[Visual V3 API and limits](docs/visual_evidence_handoff_v3.md) ·
+[Earlier V3 development/holdout comparison](docs/longmemeval_v2_visual_handoff_20261104.md)
+
+```bash
+python3 -S scripts/verify_longmemeval_v2_full_results.py
+python3 -S scripts/verify_longmemeval_v2_visual_handoff_results.py
+```
+
+## Million-token source results: core V3.2
 
 These results come from the V3.2 local controlled OOLONG-synth experiment frozen on **2026-11-01**; this standalone release preserves that experiment record. The 12 sources have distinct context IDs and content hashes and were not used in this project's earlier tuning. Every source exceeds the **262,144-token** native limit reported by the evaluated Qwen service.
 

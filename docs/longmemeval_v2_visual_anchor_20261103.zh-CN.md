@@ -81,7 +81,7 @@ visual_query_only: transition cases 0/8; perception parse errors 0.
 
 本轮 56 项针对性回归通过。第一版开发 36/36、第二版开发 36/36、留出 32/32 控制流程离线重放通过，核对图片原始字节、来源字段及成对状态关系。所有本阶段输出都在本阶段评分标签访问前固定。机械完整性不等于人工语义相关性／召回标注。
 
-模型 Qwen3.8-Flash-Next-FP8，temperature=0、seed=20261103、thinking 关闭。固定官方数据及评分提示；本轮均为 Qwen 替代默认 gpt-5.2 的 LLM 裁判。8 道新题、两份共享历史、单次运行，不足以证明普遍或显著优势；不是整体 LongMemEval-V2、官方 LAFS 或线上榜单分数。
+模型 Qwen3.8-Flash-Next-FP8，temperature=0、seed=20261103、thinking 关闭。固定官方数据及评分提示；新题中 7 道使用 Qwen 替代默认 gpt-5.2 的 LLM 裁判，1 道使用官方确定性短语匹配。8 道新题、两份共享历史、单次运行，不足以证明普遍或显著优势；不是整体 LongMemEval-V2、官方 LAFS 或线上榜单分数。
 
 第一版开发评分首次因缺少 question_type 报告元数据停止，使用独立元数据适配脚本恢复；仅为该字段设定 gotchas 默认值。推理结果、参考答案、官方评分提示及已完成的裁判请求均保持原样。新题元数据在冻结前补齐。
 

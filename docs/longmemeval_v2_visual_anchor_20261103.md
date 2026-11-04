@@ -81,7 +81,7 @@ Data documentation and recorded action alignment differ. Of 594 fill actions che
 
 All 56 targeted regression checks pass. Offline replays pass 36/36 second development, 36/36 preliminary development and 32/32 holdout records, checking original image bytes, source fields and paired states. Each stage fixes all outcomes before its scoring-label access. Mechanical integrity is not human semantic relevance/recall annotation.
 
-Qwen3.8-Flash-Next-FP8, temperature=0, seed=20261103, thinking disabled. Official data/scoring prompts are pinned; these questions use Qwen instead of default gpt-5.2 as LLM judge. Eight new questions, two reused histories and one run do not establish general/significant superiority. This is not an overall LongMemEval-V2, official LAFS or leaderboard score.
+Qwen3.8-Flash-Next-FP8, temperature=0, seed=20261103, thinking disabled. Official data/scoring prompts are pinned; seven held-out questions use Qwen instead of default gpt-5.2 as LLM judge, while one uses official deterministic phrase matching. Eight new questions, two reused histories and one run do not establish general/significant superiority. This is not an overall LongMemEval-V2, official LAFS or leaderboard score.
 
 Preliminary development scoring stopped on missing question_type report metadata. A separate adapter only supplies a gotchas default for that field, preserving inference records, reference answers, official judge prompts and completed judge calls. Holdout metadata was repaired before its freeze.
 

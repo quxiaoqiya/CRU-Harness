@@ -59,6 +59,119 @@ All methods use `Qwen3.8-Flash-Next-FP8`, temperature=0, seed=20261101, and thin
 
 This is a 12-context pilot with one run per sample, not an official leaderboard submission or evidence of general or statistically significant superiority. Public-data pretraining contamination and overlap among underlying records have not been ruled out.
 
+### Multimodal capability evaluation: LongMemEval-V2 visual subset · 2026-11-03
+
+New **text + original-screenshot trajectory-memory evaluation**: develop on 12 consumed visual questions, freeze the candidate, then evaluate eight new visual questions. IDs/normalized text exclude the prior 60, with no exact query-image hash overlap. Two shared histories contain 200 trajectories and 5,095 history screenshots. These scores cover the **visual gotchas subset**, not overall LongMemEval-V2.
+
+| Method | Correct/8 | UNKNOWN | Inference input + output tokens |
+|---|---:|---:|---:|
+| Head/tail Direct | 2/8 (25.0%) | 0 | 1,996,847 |
+| Completion Harness baseline | 1/8 (12.5%) | 1 | 267,907 |
+| Query image only, no history | 0/8 (0.0%) | 1 | 24,465 |
+| Visual-recall Harness | 2/8 (25.0%) | 0 | 197,643 |
+
+The candidate retains **1/1** baseline-correct questions, adds one, and uses **26.23% fewer inference tokens**. It matches Direct in total correct answers, with one exclusive correct answer on each side. **Absolute accuracy remains 25%, enterprise accuracy 0/4; the controller remains experimental and the original default stays unchanged.**
+
+The implementation adds current-image state extraction, observed-field retrieval, before/action/after pairs and distinct-state retention when text repeats but images differ. Effect/destination constraints in version 2 regress from version 1 at 7/12 to 6/12 in development, so version 2 is not selected for holdout. Both records are retained without per-question oracle combination.
+
+**56 regression checks, 104/104 offline replays and public verification pass.** All 32 holdout outcomes precede scoring-label access. Three Harness/query-image arms share 16k/request, 65k/task, eight-generation ceilings; Direct has a larger 262k window. Actual usage is separate. Qwen replaces default gpt-5.2 as judge. The small reused-history cohort does not establish general visual superiority, independently measured recall gains, official LAFS or leaderboard results.
+
+[中文专项报告](docs/longmemeval_v2_visual_anchor_20261103.zh-CN.md) · [English report](docs/longmemeval_v2_visual_anchor_20261103.md) · [Results JSON](benchmarks/longmemeval_v2_visual_anchor_20261103.json) · [Opt-in API](docs/visual_anchor_memory.md)
+
+### LongMemEval-V2 native completion and reversible display · 2026-11-03
+
+Another **20 new questions** exclude the prior 40 question IDs and normalized text hashes, while reusing the same two histories. All **100 outcomes were fixed before scoring-label access**. This is a third question cohort; scores are not directly comparable across cohorts.
+
+| Method | Correct/20 | UNKNOWN | Inference input + output tokens |
+|---|---:|---:|---:|
+| Native-window head/tail Direct | **4/20 · 20%** | 8 | 5,002,380 |
+| Original trajectory Harness | **8/20 · 40%** | 1 | 650,438 |
+| Native completion allocation | **11/20 · 55%** | 2 | 689,829 |
+| Reversible evidence display | **11/20 · 55%** | 2 | 685,870 |
+
+Both candidates retain **8/8** baseline-correct answers and add three correct answers: **+15 percentage points**. Unboxed finals decrease from six to three with completion and two with display. Reversible display saves **18,012 admission tokens (6.14%)** on matched complete prompts while preserving source-position unions and original images. End-to-end inference usage increases about **5–6%** over the original. Display matches completion accuracy; prompt savings are not an additional accuracy gain.
+
+Full Direct is locally denied before generation on 20/20; its semantic accuracy is undefined. Harness ceilings match at 16,384/request, 65,536/task, eight generations and 4,096 maximum output; the original requests 1,024 and candidates allocate within admission. Direct has a larger budget. **258 checks and 100/100 offline replays pass; the original default remains, with explicit experimental opt-in.** Query-image accuracy remains 1/4; visual semantic recall and abstention calibration remain unresolved.
+
+Two reused histories and one run per question limit generalization. Qwen replaces the official default gpt-5.2 judge; this is not official LAFS or a leaderboard score.
+
+[中文完整报告与逐题结果](docs/longmemeval_v2_compact_holdout_20261103.zh-CN.md) · [English report](docs/longmemeval_v2_compact_holdout_20261103.md) · [Experimental API](docs/trajectory_completion_experiments.md) · [Results JSON](benchmarks/longmemeval_v2_compact_holdout_20261103.json)
+
+### LongMemEval-V2 question holdout: retain the original route · 2026-11-03
+
+A new **20-question holdout** has zero question-ID/text-hash overlap with the
+first pilot, while reusing the same two source histories. All **120 outcomes
+across six arms were fixed before any holdout scoring-label access**.
+
+| Method | Correct /20 | UNKNOWN | Input + output tokens |
+|---|---:|---:|---:|
+| Original trajectory Harness | **13/20 · 65%** | 1 | 610,516 |
+| Native-window head/tail Direct | 5/20 · 25% | 6 | 5,048,130 |
+| Concise-answer head/tail Direct | 3/20 · 15% | 6 | 5,047,168 |
+| Experimental all-question evidence gate | 5/20 · 25% | 13 | 1,084,553 |
+| Experimental query-image visual route | 11/20 · 55% | 4 | 753,210 |
+
+Full Direct was locally denied before generation on all 20 because of capacity;
+its semantic accuracy is undefined. **Neither new candidate replaces the original
+default.** The visual route corrects one old error but abstains on three old-correct
+query-image questions. The strict gate rejects four gold-matching deterministic
+candidates; model-reported confidence and rigid citation checks need calibration.
+
+The implementation adds state/field retrieval, transition-linked original images,
+source-bound claims, and local perceptual image matching. Numeric features for
+5,099 images were rederived successfully in an isolated Pillow environment;
+inference still uses original PNGs. These checks establish integrity, not improved
+semantic recall. All **236 checks** and **120 offline controller replays** passed.
+Original text/fact controllers remain unchanged. Native and Harness ceilings
+differ; Qwen replaces the official default judge. This is a small local pilot,
+not an official LAFS or leaderboard result.
+
+Source: [LongMemEval-V2 official repository](https://github.com/xiaowu0162/LongMemEval-V2)
+and [dataset](https://huggingface.co/datasets/xiaowu0162/longmemeval-v2).
+[Protocol, failures and all per-question results](docs/longmemeval_v2_visual_holdout_20261103.md) ·
+[中文报告](docs/longmemeval_v2_visual_holdout_20261103.zh-CN.md) ·
+[Original 12-error analysis](docs/longmemeval_v2_visual_error_analysis_20261103.zh-CN.md)
+
+```bash
+python3 -S scripts/verify_longmemeval_v2_visual_results.py
+```
+
+### LongMemEval-V2 multimodal memory pilot · 2026-11-03
+
+On a frozen **20-question small-tier pilot**, `Qwen3.8-Flash-Next-FP8` with the new
+opt-in trajectory/image Harness scored **8/20 (40%)**, versus **1/20 (5%)** for
+native-window head/tail Direct: **+35 percentage points**. Full Direct was
+locally denied before generation on all 20 questions because complete text alone
+exceeded 262,144 tokens; these are capacity denials, not semantic wrong answers.
+
+The two shared histories contain 200 trajectories and 5,095 original screenshots.
+Their canonical JSON text measures **31,476,162–34,235,595 Qwen tokens**, excluding
+pixels. The longest correctly answered source is **34,235,595 tokens (130.60×
+native capacity)**, accessed through a 16,384-token working ceiling. This is
+external-source task capacity, not a larger attention window or a hard maximum.
+Harness used **655,835 input + output tokens**, versus **5,049,555** for head/tail
+Direct (**87.01% less**); compute ceilings differ.
+
+Deterministically scored questions: **Harness 5/12, Direct 1/12**. LLM-judged
+questions: **3/8 versus 0/8**, with Qwen replacing the official default judge.
+Query-image questions: **1/4 versus 0/4**. Harness still answered 12 questions
+incorrectly and returned no UNKNOWNs. This is not the full 451-question benchmark,
+an official LAFS score, or general visual-memory superiority. The original text
+and structured-fact controllers remain unchanged; **100 checks passed**.
+All 60 outcomes, budgets, image bindings, and controller trajectories replayed
+offline without new model calls.
+
+Benchmark source: [official LongMemEval-V2 repository](https://github.com/xiaowu0162/LongMemEval-V2),
+[paper](https://arxiv.org/abs/2605.12493), and
+[dataset](https://huggingface.co/datasets/xiaowu0162/longmemeval-v2).
+[Full protocol and per-question outcomes](docs/longmemeval_v2_qwen_20261103.md) ·
+[中文报告](docs/longmemeval_v2_qwen_20261103.zh-CN.md) ·
+[Results JSON](benchmarks/longmemeval_v2_qwen_20261103.json)
+
+```bash
+python3 -S scripts/verify_longmemeval_v2_results.py
+```
+
 ### LongBench v2 extreme-context comparison · 2026-11-03
 
 **All three tested models answered the largest tested natural source correctly:** its

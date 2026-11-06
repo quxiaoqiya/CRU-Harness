@@ -12,7 +12,56 @@
 
 [Technical implementation](docs/v32_implementation.md) · [Evaluation and per-sample results](docs/benchmark_v32.md) · [Results JSON](benchmarks/oolong_v32_20261101.json) · [Full project proposal](docs/CRU-Harness_Project_Proposal_V3.2.docx) · [Execution API](docs/harness_api.md)
 
-## Latest evaluation: all 451 LongMemEval-V2 Small questions · 2026-11-04
+## Latest multimodal overflow evaluation · 2026-11-05
+
+The optional page-memory modules add coverage retrieval for textless pages,
+source-ID-bound count facts, bounded missing-page repair and plain-chat final
+recovery. **On seven new visual QA questions: Direct 1/7, text memory 0/7,
+old page Harness 3/7, new page Harness 4/7.** Each target PDF is outside the
+previous 47-document corpus. These are small, derived evaluations.
+
+The stronger count census requires every supplied page: related original images
+alone exceed the service's **C = 262,144 tokens**, even after filename filtering.
+An additional 502-page run contains one byte-identical page under another
+filename. The disclosed **501-page post-hoc slice** has **514,026 original-image
+tokens (1.96C)** and zero pixel overlap with the initial cohort:
+
+| Method | Source-page exposure | Per-page count accuracy | Total-count relative error |
+|---|---:|---:|---:|
+| Original-resolution Direct | 49.50% | No valid count facts | No complete answer |
+| Direct, all pages resized to 512px | 100% | 60.28% | 31.34% |
+| **Page count memory v2.1, original resolution** | **100%** | **72.85%** | **5.05%** |
+
+Both count fields must match per page. The new total is **903 versus 951**;
+**no method gets the global total exactly right**. The 501-page slice reuses
+fixed facts, with no extra model calls; it is not a new pre-registered generation
+experiment. In the full 502-page run, count memory uses **32 calls / 545,324
+tokens**, versus **1 / 142,406** for resized Direct. Ceilings are shared, actual
+compute is not matched: C/request, 12C/task, 160 calls, 16,384 maximum output.
+
+Sources: [MMLongBench-Doc](https://huggingface.co/datasets/yubo2333/MMLongBench-Doc)
+and a derived [DocLayNet 1.0](https://github.com/DS4SD/DocLayNet) visual census.
+These are **not official leaderboard scores**. Coverage is not object recall;
+minimal sufficient crops have not been proved to exceed C. Frozen v2 exposes
+2,023 pages at about 8C but fails complete fact extraction; v2.1 accuracy at 8C
+has not been validated. The original defaults remain unchanged.
+
+**32 unit checks and 51 local offline replays pass.** All predictions precede
+scoring access. Total physical usage including development and judging is
+**726 generations / 13,928,581 tokens**. Raw images, labels and request logs stay
+local. Page v2.1 is distinct from core V3.2 and trajectory visual V3.
+
+[English report](docs/visual_collective_20261105.md) ·
+[中文报告](docs/visual_collective_20261105.zh-CN.md) ·
+[Public results and duplicate correction](benchmarks/visual_collective_20261105.json) ·
+[Opt-in API](docs/visual_page_memory.md)
+
+```bash
+python3 -S scripts/verify_visual_collective_results.py
+python3 -S -m unittest tests.test_multimodal_page_harness tests.test_multimodal_page_harness_v2 tests.test_visual_count_memory_public
+```
+
+## All 451 LongMemEval-V2 Small questions · 2026-11-04
 
 **The optional V3 visual controller scores 209/451 (46.34%), versus 72/451
 (15.96%) for native-window head/tail Direct and 208/451 (46.12%) for visual V1.**

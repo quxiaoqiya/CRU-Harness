@@ -12,7 +12,50 @@
 
 [技术实现](docs/v32_implementation.md) · [评测与逐题结果](docs/benchmark_v32.md) · [结果 JSON](benchmarks/oolong_v32_20261101.json) · [完整项目书](docs/CRU-Harness_Project_Proposal_V3.2.docx) · [执行 API](docs/harness_api.md)
 
-## 最新评测：LongMemEval-V2 Small 全部 451 题 · 2026-11-04
+## 最新多模态超上下文评测 · 2026-11-05
+
+新增可选图页记忆模块：无文字页覆盖检索、页面 ID 绑定计数事实、有界缺失页补读、
+无工具 schema 的最终答案恢复。**7 道新视觉 QA：直连 1/7、纯文本记忆 0/7、
+旧图页 Harness 3/7、新图页 Harness 4/7。** 7 个目标 PDF 均不在此前 47 份来源语料中。
+这是小样本派生评测。
+
+更严格的全局计数要求全部页面参与：**相关原图本身超过 C = 262,144 tokens**，
+不能靠文件名筛掉。额外 502 页运行发现 1 张跨文件名的像素重复；明确剔除后的
+**501 页事后切片**与初始组无像素交集，相关原图 **514,026 tokens，约 1.96C**：
+
+| 方法 | 来源图页暴露率 | 逐页计数准确率 | 总数相对误差 |
+|---|---:|---:|---:|
+| 原始分辨率直连 | 49.50% | 无有效计数事实 | 无完整答案 |
+| 全页缩至 512 像素直连 | 100% | 60.28% | 31.34% |
+| **v2.1 原图计数记忆** | **100%** | **72.85%** | **5.05%** |
+
+逐页要求 Picture、Table 两个数字均正确。新版总数 **903，参考为 951**；
+**所有方法都未完全答对全局总数**。501 页是固定事实的零调用审计切片，不是另一次
+预注册生成实验。完整 502 页运行中，新版实际 **32 次／545,324 tokens**，
+缩图直连 **1 次／142,406 tokens**。同预算指相同上限，实际计算量不同：
+单次 C、累计 12C、最多 160 次调用、单次输出上限 16,384。
+
+来源：[MMLongBench-Doc](https://huggingface.co/datasets/yubo2333/MMLongBench-Doc)
+及 [DocLayNet 1.0](https://github.com/DS4SD/DocLayNet) 人工布局标注派生的视觉计数，
+**不是官方榜单分数**。看过图页不等于召回了全部对象；最优裁剪后的必要证据是否仍超过 C
+尚未证明。冻结 v2 在约 8C 下看过 2,023 页，但事实不完整；v2.1 的 8C 准确率尚未验证。
+原默认路径保留。
+
+**32 项单测、51 项本地离线重放通过**，全部预测在评分前固定。含开发及裁判的实际总用量
+为 **726 次／13,928,581 tokens**。原图、标签、请求日志留在本地。
+图页 v2.1 与核心 V3.2、轨迹视觉 V3 为不同模块版本。
+
+[中文完整报告](docs/visual_collective_20261105.zh-CN.md) ·
+[English report](docs/visual_collective_20261105.md) ·
+[公开结果与重复更正](benchmarks/visual_collective_20261105.json) ·
+[可选接口](docs/visual_page_memory.md)
+
+```bash
+python3 -S scripts/verify_visual_collective_results.py
+python3 -S -m unittest tests.test_multimodal_page_harness tests.test_multimodal_page_harness_v2 tests.test_visual_count_memory_public
+```
+
+## LongMemEval-V2 Small 全部 451 题 · 2026-11-04
 
 **可选视觉 V3 控制器为 209/451（46.34%），原生窗口首尾直连为 72/451（15.96%），
 旧视觉 V1 为 208/451（46.12%）。** 本轮全量结果作为当前 LongMemEval-V2 的主要结论；

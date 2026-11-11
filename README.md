@@ -12,6 +12,15 @@
 
 [Technical implementation](docs/v32_implementation.md) · [Evaluation and per-sample results](docs/benchmark_v32.md) · [Results JSON](benchmarks/oolong_v32_20261101.json) · [Full project proposal](docs/CRU-Harness_Project_Proposal_V3.2.docx) · [Execution API](docs/harness_api.md)
 
+## MM-NIAH visual reasoning token use · 2026-11-10
+
+On the MM-NIAH development regression set, CRU-Harness v3.1 in forced-memory
+mode used **97.20% fewer inference tokens** than the recorded original-image
+Qwen direct baseline, with the same observed aggregate accuracy. On the
+separate held-out paired set, Qwen direct with full-source 512 px thumbnails
+used **32.43% fewer tokens** than original-image direct, also with the same
+observed aggregate accuracy. [Benchmark scope and sources](docs/mm_niah_token_use_20261110.md)
+
 ## Latest multimodal overflow evaluation · 2026-11-05
 
 The optional page-memory modules add coverage retrieval for textless pages,

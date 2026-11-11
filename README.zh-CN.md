@@ -12,6 +12,13 @@
 
 [技术实现](docs/v32_implementation.md) · [评测与逐题结果](docs/benchmark_v32.md) · [结果 JSON](benchmarks/oolong_v32_20261101.json) · [完整项目书](docs/CRU-Harness_Project_Proposal_V3.2.docx) · [执行 API](docs/harness_api.md)
 
+## MM-NIAH 视觉推理 token 用量 · 2026-11-10
+
+在 MM-NIAH 开发回归组中，CRU-Harness v3.1 强制记忆与 Qwen 原图直连历史基线的
+整体实测准确率持平，推理 token 用量减少 **97.20%**。在独立留出组的同题配对中，
+Qwen 全来源图缩至 512 像素后直连，与原图直连的整体实测准确率持平，token 用量减少
+**32.43%**。[评测范围与来源](docs/mm_niah_token_use_20261110.md#简体中文)
+
 ## 最新多模态超上下文评测 · 2026-11-05
 
 新增可选图页记忆模块：无文字页覆盖检索、页面 ID 绑定计数事实、有界缺失页补读、

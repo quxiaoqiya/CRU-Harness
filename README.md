@@ -16,10 +16,8 @@
 
 On the MM-NIAH development regression set, CRU-Harness v3.1 in forced-memory
 mode used **97.20% fewer inference tokens** than the recorded original-image
-Qwen direct baseline, with the same observed aggregate accuracy. On the
-separate held-out paired set, Qwen direct with full-source 512 px thumbnails
-used **32.43% fewer tokens** than original-image direct, also with the same
-observed aggregate accuracy. [Benchmark scope and sources](docs/mm_niah_token_use_20261110.md)
+Qwen direct baseline, with the same observed aggregate accuracy.
+[Benchmark scope and sources](docs/mm_niah_token_use_20261110.md)
 
 ## Latest multimodal overflow evaluation · 2026-11-05
 
